@@ -1,0 +1,386 @@
+---
+import { join } from "node:path";
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import TwoCol from "@/components/TwoCol.astro";
+import RelatedBand from "@/components/RelatedBand.astro";
+import FaqList from "@/components/FaqList.astro";
+import CtaBand from "@/components/CtaBand.astro";
+import PhoneLink from "@/components/PhoneLink.astro";
+import global from "@/data/copy/_global.json";
+import { SITE_ORIGIN, contactPath, getCity, servicePath } from "@/data/cityConfig";
+import { getServicePage } from "@/data/services/index.ts";
+import { imageFor } from "@/data/services/imageMap.ts";
+import type { PhotoRef } from "@/data/services/types.ts";
+import { heroImage } from "@/lib/heroImage";
+import CopyBlocks from "./_CopyBlocks.astro";
+
+export function getStaticPaths() {
+  const city = getCity("springfield");
+  return city.services.map((service) => ({
+    params: { city: city.slug, service: service.slug },
+  }));
+}
+
+const citySlug = Astro.params.city;
+const serviceSlug = Astro.params.service;
+if (!citySlug || !serviceSlug) throw new Error("Service route is missing params");
+if (citySlug !== "springfield") throw new Error(`Service pages are Springfield only: ${citySlug}`);
+
+const city = getCity(citySlug);
+const page = getServicePage(serviceSlug);
+const service = city.services.find((item) => item.slug === page.slug);
+if (!service) throw new Error(`${page.slug} is not in cityConfig`);
+
+const hero = await heroImage(join(process.cwd(), page.heroFile));
+const path = servicePath(city, service);
+const contact = contactPath(city);
+const canonical = new URL(path, SITE_ORIGIN).toString();
+
+const related = page.relatedSlugs.map((slug) => {
+  const item = city.services.find((serviceItem) => serviceItem.slug === slug);
+  if (!item) throw new Error(`Related service missing from cityConfig: ${slug}`);
+  return { title: item.name, href: servicePath(city, item) };
+});
+
+const faqs = page.sections.flatMap((section) => (section.type === "faq" ? section.items : []));
+
+function sized(file: string, width: number): { image: ImageMetadata; width: number; height: number } {
+  const image = imageFor(file);
+  return { image, width, height: Math.max(1, Math.round((width * image.height) / image.width)) };
+}
+
+const serviceLd = {
+  "@type": "Service",
+  name: page.h1,
+  serviceType: service.name,
+  description: page.description,
+  url: canonical,
+  areaServed: { "@type": "City", name: city.displayName },
+  provider: {
+    "@type": "LocalBusiness",
+    name: global.brandName,
+    telephone: city.phoneE164,
+    url: new URL("/", SITE_ORIGIN).toString(),
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: city.address.street,
+      addressLocality: city.address.city,
+      addressRegion: city.address.state,
+      postalCode: city.address.postalCode,
+    },
+  },
+};
+
+const breadcrumbLd = {
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: global.nav.home, item: new URL("/", SITE_ORIGIN).toString() },
+    { "@type": "ListItem", position: 2, name: page.h1, item: canonical },
+  ],
+};
+
+const graph = [
+  serviceLd,
+  breadcrumbLd,
+  ...(faqs.length
+    ? [
+        {
+          "@type": "FAQPage",
+          mainEntity: faqs.map((item) => ({
+            "@type": "Question",
+            name: item.question,
+            acceptedAnswer: { "@type": "Answer", text: item.answer },
+          })),
+        },
+      ]
+    : []),
+];
+
+const jsonLd = JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replace(/</g, "\\u003c");
+
+function photoStyle(photo: PhotoRef): string {
+  return `object-position: ${photo.objectPosition ?? "50% 40%"};`;
+}
+---
+
+<BaseLayout
+  title={page.title}
+  description={page.description}
+  path={path}
+  citySlug={city.slug}
+  hero={{
+    eyebrow: page.eyebrow,
+    heading: page.h1,
+    subhead: page.subhead,
+    image: hero,
+    alt: page.heroAlt,
+    objectPosition: page.heroPosition,
+  }}
+>
+  <script is:inline slot="jsonld" type="application/ld+json" set:html={jsonLd} />
+  {
+    page.sections.map((section) => {
+      if (section.type === "prose") {
+        return (
+          <section class="section">
+            <div class="container">
+              {section.heading && <h2>{section.heading}</h2>}
+              <CopyBlocks
+                paragraphs={section.paragraphs}
+                items={section.items}
+                groups={section.groups}
+                button={section.button}
+                contactHref={contact}
+              />
+            </div>
+          </section>
+        );
+      }
+
+      if (section.type === "split") {
+        return (
+          <TwoCol
+            heading={section.heading}
+            image={imageFor(section.photo.file)}
+            alt={section.photo.alt}
+            side={section.side}
+            objectPosition={section.photo.objectPosition}
+          >
+            <CopyBlocks
+              paragraphs={section.paragraphs}
+              items={section.items}
+              groups={section.groups}
+              button={section.button}
+              contactHref={contact}
+            />
+          </TwoCol>
+        );
+      }
+
+      if (section.type === "cards") {
+        return (
+          <section class="section">
+            <div class="container">
+              {section.heading && <h2>{section.heading}</h2>}
+              <CopyBlocks paragraphs={section.intro} contactHref={contact} />
+              <ul class="cards">
+                {section.items.map((item) => {
+                  const icon = item.icon ? sized(item.icon.file, 120) : undefined;
+                  return (
+                    <li>
+                      {icon && (
+                        <Image
+                          src={icon.image}
+                          alt=""
+                          width={icon.width}
+                          height={icon.height}
+                          format="webp"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      )}
+                      <h3>{item.title}</h3>
+                      <CopyBlocks paragraphs={item.paragraphs} contactHref={contact} />
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </section>
+        );
+      }
+
+      if (section.type === "steps") {
+        const steps = (
+          <>
+            {section.headers.length > 0 && (
+              <p class="step-headers">
+                {section.headers.map((header) => (
+                  <span>{header}</span>
+                ))}
+              </p>
+            )}
+            {section.steps.map((step) => (
+              <div class="step">
+                <h3>{step.title}</h3>
+                {step.lines.map((line) => (
+                  <p>{line}</p>
+                ))}
+              </div>
+            ))}
+          </>
+        );
+        return section.photo ? (
+          <TwoCol
+            heading={section.heading}
+            image={imageFor(section.photo.file)}
+            alt={section.photo.alt}
+            side={section.side ?? "right"}
+            objectPosition={section.photo.objectPosition}
+          >
+            {steps}
+          </TwoCol>
+        ) : (
+          <section class="section">
+            <div class="container">
+              <h2>{section.heading}</h2>
+              {steps}
+            </div>
+          </section>
+        );
+      }
+
+      if (section.type === "faq") {
+        return <FaqList heading={section.heading} items={section.items} />;
+      }
+
+      if (section.type === "related") {
+        return <RelatedBand heading="Related services" items={related} />;
+      }
+
+      const linked = section.paragraphs?.some((paragraph) => paragraph.some((part) => part.href)) ?? false;
+      if (!section.photo && !linked) {
+        const text = section.paragraphs?.map((paragraph) => paragraph.map((part) => part.text).join("")).join(" ");
+        return <CtaBand heading={section.heading} text={text} ctaLabel={section.button} citySlug={city.slug} />;
+      }
+
+      const ctaPhoto = section.photo ? sized(section.photo.file, 440) : undefined;
+      return (
+        <section class="cta-band">
+          <div class="container cta-grid" data-side={section.side ?? "right"}>
+            <div class="cta-copy">
+              <h2>{section.heading}</h2>
+              <CopyBlocks paragraphs={section.paragraphs} contactHref={contact} />
+              <div class="ctas">
+                <a class="btn btn-light" href={contact}>{section.button ?? global.cta.label}</a>
+                <PhoneLink class="btn btn-outline" label={global.call.label} citySlug={city.slug} />
+              </div>
+            </div>
+            {ctaPhoto && section.photo && (
+              <div class="cta-photo">
+                <Image
+                  src={ctaPhoto.image}
+                  alt={section.photo.alt}
+                  width={ctaPhoto.width}
+                  height={ctaPhoto.height}
+                  format="webp"
+                  loading="lazy"
+                  decoding="async"
+                  style={photoStyle(section.photo)}
+                />
+              </div>
+            )}
+          </div>
+        </section>
+      );
+    })
+  }
+</BaseLayout>
+
+<style>
+  h2 {
+    margin: 0 0 16px;
+  }
+
+  .cards {
+    display: grid;
+    gap: 28px 32px;
+    list-style: none;
+    margin: 28px 0 0;
+    padding: 0;
+  }
+
+  .cards h3 {
+    margin: 12px 0 8px;
+  }
+
+  .step-headers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    margin: 0 0 12px;
+    font-weight: 700;
+  }
+
+  .step {
+    margin-top: 16px;
+  }
+
+  .step h3 {
+    margin: 0 0 8px;
+  }
+
+  .step p {
+    margin: 0;
+  }
+
+  .cta-band {
+    background: var(--color-primary);
+    color: var(--color-white);
+    padding-block: 64px;
+  }
+
+  .cta-band h2 {
+    color: var(--color-white);
+  }
+
+  .cta-grid {
+    display: grid;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .cta-band :global(.phone-link) {
+    text-decoration: none;
+  }
+
+  .cta-band :global(a:not(.btn)) {
+    color: var(--color-white);
+  }
+
+  .cta-photo {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+
+  .cta-photo :global(img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (min-width: 768px) {
+    .cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .cta-grid:has(.cta-photo) {
+      grid-template-columns: 58fr 42fr;
+      gap: 36px;
+    }
+
+    .cta-grid[data-side="left"]:has(.cta-photo) {
+      grid-template-columns: 42fr 58fr;
+    }
+
+    .cta-grid[data-side="left"] .cta-copy {
+      order: 2;
+    }
+
+    .cta-grid[data-side="left"] .cta-photo {
+      order: 1;
+    }
+  }
+</style>

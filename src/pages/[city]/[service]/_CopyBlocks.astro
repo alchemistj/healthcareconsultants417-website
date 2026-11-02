@@ -1,0 +1,63 @@
+---
+import type { Group, Part } from "@/data/services/types.ts";
+import Parts from "./_Parts.astro";
+
+interface Props {
+  paragraphs?: Part[][];
+  items?: Part[][];
+  groups?: Group[];
+  button?: string;
+  contactHref: string;
+}
+
+const { paragraphs, items, groups, button, contactHref } = Astro.props;
+---
+
+{paragraphs?.map((paragraph) => (
+  <p>
+    <Parts parts={paragraph} />
+  </p>
+))}
+{
+  items && items.length > 0 && (
+    <ul>
+      {items.map((item) => (
+        <li>
+          <Parts parts={item} />
+        </li>
+      ))}
+    </ul>
+  )
+}
+{
+  groups?.map((group) => (
+    <div class="group">
+      <h3>{group.title}</h3>
+      {group.paragraphs.map((paragraph) => (
+        <p>
+          <Parts parts={paragraph} />
+        </p>
+      ))}
+    </div>
+  ))
+}
+{button && <a class="btn btn-primary" href={contactHref}>{button}</a>}
+
+<style>
+  ul {
+    margin: 1em 0 0;
+    padding-left: 1.25em;
+  }
+
+  h3 {
+    margin: 1.25em 0 0.4em;
+  }
+
+  .group:first-child h3 {
+    margin-top: 0;
+  }
+
+  a.btn {
+    margin-top: 16px;
+  }
+</style>
