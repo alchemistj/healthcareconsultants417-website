@@ -23,10 +23,33 @@ redirect checks, city config). It is React-heavy; this site uses plain `.astro` 
   same order as the old page.** Re-encoding and resizing by the Astro build is fine. Never add,
   swap, generate, upscale, recolor or recrop-out-the-subject any photo. No stock. If a layout needs
   a photo the old page doesn't have, leave it out and report it.
-- **Facts still unconfirmed (mark `TBD` in data, don't render):** business hours (24/7 vs Mon–Sun
-  8–5), "25 years of experience", whether Travis appears on the site. Phone (417) 720-0818 /
+- **Facts still unconfirmed (mark `TBD` in data, don't render):** "25 years of experience",
+  whether Travis appears on the site. (Hours are settled; see Josh's decisions.) Phone (417) 720-0818 /
   `tel:+14177200818` and address 1450 W Cambridge St, Springfield, MO 65807 are the working NAP.
 - **No star ratings or review counts.** Individual Google reviews only, as the audit captured them.
+
+## Josh's decisions (2026-11-02)
+
+- **Theme-demo image slots:** 25 images on the old pages came from the theme's demo server
+  (`demo.themedraft.net`, listed under `excluded` in `src/data/legacyImageManifest.json`). They
+  were placeholder stock, not her photos. Where one of those slots matters to the layout, **pick an
+  appropriate photo from her own originals** in `src/assets/legacy/` (subject must match the
+  section; prefer photos not already used on that page). Record every substitution in
+  `docs/image-substitutions.md` (page, slot, demo file it replaces, her file chosen, one-line
+  reason) and list it in the PR. Partner/brand logo strips (`brand-1..5.png`) and decorative
+  `line-*.png` are dropped, not replaced. Every image that isn't a substitution still follows the
+  image lock: same photo, same order.
+- **Fonts:** keep both old fonts. Poppins for headings (weight 600) and Rubik for body (weight 400),
+  **self-hosted** woff2 (e.g. from `@fontsource/poppins` / `@fontsource/rubik`, latin subset only),
+  `font-display: swap`, **no preload**, never loaded from Google. Defined in `src/styles/tokens.css`.
+- **No privacy policy and no terms pages.** Don't build them. Because there are no terms, the
+  contact form has **no SMS consent checkbox** (Rule 14 makes it optional). Remove both legal
+  routes from the registry's published list.
+- **Hours:** the old site's header says "Hours of Operation: Mon-Sun 8am-5pm" on every page; the
+  "24/7" was only facility copy. Hours may render as the copy shows them. "25 years" and Travis
+  stay TBD (not rendered).
+- **Vercel:** project `healthcareconsultants417-website` (team Josh Lenz's projects) is linked to
+  this repo with Deployment Protection off (Rule 1.1). Every pushed branch gets a preview.
 
 ## Decisions
 
@@ -57,7 +80,7 @@ redirect checks, city config). It is React-heavy; this site uses plain `.astro` 
 | `/springfield/transitional-care/` | `/services/transitional-care/` | service | D |
 | `/springfield/hospital-to-home-transition/` | `/services/hospital-to-home-transition/` | service | D |
 | `/springfield/contact/` | `/contact-us/` | contact | E |
-| `/privacy-policy/`, `/terms/` | (only if the old site has this copy; otherwise omit and report) | legal | E |
+| ~~`/privacy-policy/`, `/terms/`~~ | Not built (Josh, Nov 2). Remove from the registry. | — | — |
 
 Redirect-only (Lane F): `/contact-us-2-2/` (old Services page) → `/`; `/contact-us-2/` → `/`;
 blog posts → closest service (`veterans-*` and `third-tuesday-suicide-loss-support-group` →
@@ -70,6 +93,21 @@ Keep `/wp-content/uploads/2024/11/About-zPods.pdf` working at the same path (fil
 Old menu (for header quick links and footer): Home · About Us (zPods Medical Mission,
 Transitional Healthcare) · Services (Senior Community Placement, Relocation, zPods® Sensory Bed,
 Suicide Awareness, Senior Downsizing Help) · Resources · Contact Us.
+
+## Cursor jobs (Nov 2: built by Cursor through FF Architect, three jobs in parallel)
+
+Lane B (shell) is done and merged. The remaining lanes are grouped into three Cursor jobs, each on
+its own branch and PR into `claude/practical-goldberg-cz9xsu`. Each job owns the files of the
+lanes it covers (below) and nothing else.
+
+| Job | Branch | Covers | Extra files it may change |
+|---|---|---|---|
+| 1. Pages | `cursor/hc417-pages` | Lanes C + E | Logo in `Header.astro`/`Footer.astro`, `public/favicon.*`, fonts in `src/styles/tokens.css` (+ `@fontsource` deps in `package.json`/lockfile), drop legal routes in `src/lib/launchRouteRegistry.ts`, `docs/image-substitutions/pages.md` |
+| 2. Services | `cursor/hc417-services` | Lane D | `docs/image-substitutions/services.md` |
+| 3. Gates | `cursor/hc417-gates` | Lane F | `test:e2e` script + Playwright devDependency in `package.json`/lockfile |
+
+If two jobs both need `package.json`, keep each job's change to its own lines; the integrator
+resolves the lockfile at merge.
 
 ## Lanes and file ownership
 
