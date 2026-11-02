@@ -1,7 +1,7 @@
 ---
 import ContactForm from "@/components/forms/ContactForm.astro";
 import type { Inline } from "@/data/pages/companyCopy";
-import { getCity, servicePath } from "@/data/cityConfig";
+import { LAUNCH_ROUTES } from "@/lib/launchRouteRegistry";
 
 interface Props {
   nodes: Inline[];
@@ -44,15 +44,14 @@ function escapeHtml(value: string): string {
   return value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");
 }
 
-/** Old-site link labels that say nothing about where they go ("Read More"). */
-const GENERIC_LINK_TEXT = new Set(["read more"]);
+/** Old-site link labels that say nothing about where they go ("Read More", "Learn More"). */
+const GENERIC_LINK_TEXT = new Set(["read more", "learn more"]);
 
-/** Service name for a service-page href, used only as hidden link context. */
+/** Registry page name for an internal href, used only as hidden link context. */
 function hiddenContext(text: string, href: string): string {
   if (!GENERIC_LINK_TEXT.has(text.trim().toLowerCase())) return "";
-  const city = getCity();
-  const service = city.services.find((item) => servicePath(city, item) === href);
-  return service ? `<span class="visually-hidden"> about ${escapeHtml(service.name)}</span>` : "";
+  const route = LAUNCH_ROUTES.find((item) => item.path === href);
+  return route ? `<span class="visually-hidden"> about ${escapeHtml(route.linkTitle)}</span>` : "";
 }
 
 /**
