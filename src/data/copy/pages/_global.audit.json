@@ -1,0 +1,332 @@
+{
+  "source_url": "https://www.healthcareconsultants417.com/",
+  "note": "Captured once from the homepage. Header, nav menus and footer. Per-page differences are listed in SUMMARY.md.",
+  "areas": [
+    {
+      "area": "div",
+      "id": "",
+      "cls": "elementor elementor-2548 elementor-location-header",
+      "blocks": [
+        {
+          "type": "li",
+          "text": "Hours of Operation: Mon-Sun 8am-5pm"
+        },
+        {
+          "type": "li",
+          "text": "Email: rachal@healthcareconsultants417.com",
+          "href": "http://rachal@healthcareconsultants417.com"
+        },
+        {
+          "type": "li",
+          "text": "Phone: (417) 720-0818",
+          "href": "tel:4177200818"
+        },
+        {
+          "type": "li",
+          "text": "Home",
+          "href": "https://www.healthcareconsultants417.com/"
+        },
+        {
+          "type": "li",
+          "text": "About Us",
+          "href": "https://www.healthcareconsultants417.com/about-us/"
+        },
+        {
+          "type": "li",
+          "text": "zPods Medical Mission",
+          "href": "https://www.healthcareconsultants417.com/zpods-medical-mission/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Transitional Healthcare",
+          "href": "https://www.healthcareconsultants417.com/transitional-healthcare/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Services",
+          "href": "https://www.healthcareconsultants417.com/contact-us-2-2/"
+        },
+        {
+          "type": "li",
+          "text": "Senior Community Placement",
+          "href": "https://www.healthcareconsultants417.com/services/community-placement/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Relocation",
+          "href": "https://www.healthcareconsultants417.com/senior-relocation-services/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "zPods® Sensory Bed",
+          "href": "https://www.healthcareconsultants417.com/zpod-beds/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Suicide Awareness",
+          "href": "https://www.healthcareconsultants417.com/services/suicide-awareness/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Senior Downsizing Help",
+          "href": "https://www.healthcareconsultants417.com/senior-downsizing-help/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Resources",
+          "href": "https://www.healthcareconsultants417.com/resources/"
+        },
+        {
+          "type": "li",
+          "text": "Contact Us",
+          "href": "https://www.healthcareconsultants417.com/contact-us/"
+        },
+        {
+          "type": "p",
+          "text": "Menu",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Home",
+          "href": "https://www.healthcareconsultants417.com/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "About Us",
+          "href": "https://www.healthcareconsultants417.com/about-us/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "zPods Medical Mission",
+          "href": "https://www.healthcareconsultants417.com/zpods-medical-mission/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Transitional Healthcare",
+          "href": "https://www.healthcareconsultants417.com/transitional-healthcare/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Services",
+          "href": "https://www.healthcareconsultants417.com/contact-us-2-2/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Senior Community Placement",
+          "href": "https://www.healthcareconsultants417.com/services/community-placement/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Relocation",
+          "href": "https://www.healthcareconsultants417.com/senior-relocation-services/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "zPods® Sensory Bed",
+          "href": "https://www.healthcareconsultants417.com/zpod-beds/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Suicide Awareness",
+          "href": "https://www.healthcareconsultants417.com/services/suicide-awareness/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Senior Downsizing Help",
+          "href": "https://www.healthcareconsultants417.com/senior-downsizing-help/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Resources",
+          "href": "https://www.healthcareconsultants417.com/resources/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Contact Us",
+          "href": "https://www.healthcareconsultants417.com/contact-us/",
+          "hidden": true
+        },
+        {
+          "type": "button",
+          "text": "Free Consultation",
+          "href": "/contact-us/"
+        },
+        {
+          "type": "button",
+          "text": "Free Consultation",
+          "href": "/contact-us/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Home",
+          "href": "https://www.healthcareconsultants417.com/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "About Us",
+          "href": "https://www.healthcareconsultants417.com/about-us/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "zPods Medical Mission",
+          "href": "https://www.healthcareconsultants417.com/zpods-medical-mission/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Transitional Healthcare",
+          "href": "https://www.healthcareconsultants417.com/transitional-healthcare/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Services",
+          "href": "https://www.healthcareconsultants417.com/contact-us-2-2/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Senior Community Placement",
+          "href": "https://www.healthcareconsultants417.com/services/community-placement/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Relocation",
+          "href": "https://www.healthcareconsultants417.com/senior-relocation-services/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "zPods® Sensory Bed",
+          "href": "https://www.healthcareconsultants417.com/zpod-beds/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Suicide Awareness",
+          "href": "https://www.healthcareconsultants417.com/services/suicide-awareness/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Senior Downsizing Help",
+          "href": "https://www.healthcareconsultants417.com/senior-downsizing-help/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Resources",
+          "href": "https://www.healthcareconsultants417.com/resources/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Contact Us",
+          "href": "https://www.healthcareconsultants417.com/contact-us/",
+          "hidden": true
+        },
+        {
+          "type": "p",
+          "text": "Menu",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Home",
+          "href": "https://www.healthcareconsultants417.com/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "About Us",
+          "href": "https://www.healthcareconsultants417.com/about-us/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "zPods Medical Mission",
+          "href": "https://www.healthcareconsultants417.com/zpods-medical-mission/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Transitional Healthcare",
+          "href": "https://www.healthcareconsultants417.com/transitional-healthcare/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Services",
+          "href": "https://www.healthcareconsultants417.com/contact-us-2-2/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Senior Community Placement",
+          "href": "https://www.healthcareconsultants417.com/services/community-placement/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Relocation",
+          "href": "https://www.healthcareconsultants417.com/senior-relocation-services/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "zPods® Sensory Bed",
+          "href": "https://www.healthcareconsultants417.com/zpod-beds/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Suicide Awareness",
+          "href": "https://www.healthcareconsultants417.com/services/suicide-awareness/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Senior Downsizing Help",
+          "href": "https://www.healthcareconsultants417.com/senior-downsizing-help/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Resources",
+          "href": "https://www.healthcareconsultants417.com/resources/",
+          "hidden": true
+        },
+        {
+          "type": "li",
+          "text": "Contact Us",
+          "href": "https://www.healthcareconsultants417.com/contact-us/",
+          "hidden": true
+        }
+      ]
+    }
+  ],
+  "mobile_only_blocks": []
+}

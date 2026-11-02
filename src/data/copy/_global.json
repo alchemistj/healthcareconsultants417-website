@@ -1,5 +1,5 @@
 {
-  "_note": "Shell labels. Source: old WordPress menu (BUILD-SPEC) because audit/copy/_global.json did not exist when Lane B built the shell. Replace with the audit file when it lands.",
+  "_note": "Shell labels from the old site's header/menu (see pages/_global.audit.json). CTA 'Free Consultation' is the old header button. 'Call Now' is a design label per Rule 7.2.",
   "brandName": "Transitional Healthcare Consultants",
   "nav": {
     "home": "Home",
@@ -11,7 +11,7 @@
     "contact": "Contact Us"
   },
   "cta": {
-    "label": "Contact Us"
+    "label": "Free Consultation"
   },
   "call": {
     "label": "Call Now"

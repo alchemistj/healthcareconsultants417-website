@@ -1,21 +1,23 @@
 /*
  * Design tokens. Four brand colors, one font, one content width. Defined once, here.
  *
- * TODO-BRAND: audit/brand.json did not exist when Lane B built the shell
- * (/home/user/ff-architect/docs/clients/healthcareconsultants417/audit/brand.json).
- * The color and font values below are PLACEHOLDERS, not the client's brand. Replace
- * all four colors and the font with the values from brand.json, then check WCAG AA.
+ * Colors are the old site's real brand colors, taken from computed styles in the audit
+ * (ff-architect docs/clients/healthcareconsultants417/audit/brand.json):
+ *   dark    #152133  (dark navy section backgrounds)
+ *   primary #742839  (maroon bands and buttons)
+ *   accent  #2042A6  (blue headings and links)
+ * The old site's coral (#F69574) is left out to stay at four colors; it fails AA as text on white.
+ * All three pass WCAG AA with white text and as text on white.
+ *
+ * Font: the old site loaded Poppins (headings) and Rubik (body) from Google Fonts. The rules
+ * forbid Google-hosted fonts; system fonts for now. Self-hosting one weight of Poppins is Josh's call.
  */
 :root {
-  /* TODO-BRAND: placeholder dark */
-  --color-dark: #1f2a37;
+  --color-dark: #152133;
   --color-white: #ffffff;
-  /* TODO-BRAND: placeholder primary */
-  --color-primary: #1d5c63;
-  /* TODO-BRAND: placeholder accent (darkened enough for white text, 4.5:1) */
-  --color-accent: #b4531a;
+  --color-primary: #742839;
+  --color-accent: #2042a6;
 
-  /* TODO-BRAND: placeholder font. System fonts only; never load Google Fonts. */
   --font-body: system-ui, -apple-system, "Segoe UI", "Noto Sans", Roboto, sans-serif;
 
   --content-max: 900px;

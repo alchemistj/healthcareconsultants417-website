@@ -1,0 +1,16 @@
+source,old_target,new_target,hits_on_old_site,note
+/contact-and-support/,post 629 (contact-us),/springfield/contact/,180,EPS 301 Redirects id 1
+/about-use0f1ee6f/,post 608 (about-us),/about/,110,EPS id 2
+/our-services/,post 1175 (Services page),/,137,EPS id 3
+/medicalconsulting/,post 1935 (not published),/,0,EPS id 4
+/case-management/,post 1935 (not published),/,117,EPS id 5
+/services/hospital-to-home-transition-coordination/,/,/springfield/hospital-to-home-transition/,257,EPS id 6; closer match than home
+/services/medical-chart-investigations/,/,/,223,EPS id 7
+/services/genetic-testing/,/,/,223,EPS id 8
+/services/health-advocacy-and-case-management-services/,/,/,254,EPS id 9
+/services/home-safety-evaluations/,post 1812 (transitional-healthcare),/transitional-healthcare/,250,EPS id 10
+/veterans-of-the-ozarks-2025-calendar-of-events/,post 2033,/springfield/suicide-awareness/,99,EPS id 11
+/expecting-how-to-choose-a-life-insurance-policy/,/resources/,/resources/,30,EPS id 12
+/services/relocation/,post 2387 (senior-relocation-services),/springfield/senior-relocation/,243,EPS id 13
+/services/assistive-technology/,post 2752 (zpod-beds),/springfield/zpod-sensory-beds/,196,EPS id 14
+/zpods-health-benefits/,post 2752 (zpod-beds),/springfield/zpod-sensory-beds/,173,EPS id 15
