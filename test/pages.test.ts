@@ -43,6 +43,70 @@ function allowedHref(href: string): boolean {
   return LAUNCH_PATHS.has(href);
 }
 
+test("home hero is the retired couple and Senior Guidance stays a body photo", () => {
+  const home = manifest.pages.find((page) => page.slug === "home");
+  assert.ok(home);
+  const hero = home.images.find((image) => image.order === 0);
+  assert.ok(hero);
+  assert.equal(hero.role, "hero");
+  assert.equal(hero.alt, "Smiling older couple");
+  assert.equal(
+    hero.original_url,
+    "https://www.healthcareconsultants417.com/wp-content/uploads/2024/12/retired-couple-2023-11-27-05-10-48-utc.jpg",
+  );
+  assert.equal(hero.sha256, "bed2a3402dba9a516fbf982da61dbd7911b2e2f8f2d260d20a437741e0f55289");
+  assert.equal(sha256File(hero.file), hero.sha256);
+  const files = pageImageFiles(buildPage("home"));
+  assert.equal(files[0], hero.file);
+  const guidance = "src/assets/legacy/wp-content/uploads/2024/12/Senior-Guidance.jpg";
+  assert.equal(files.includes(guidance), true);
+  assert.notEqual(files[0], guidance);
+  const body = home.images.find((image) => image.file === guidance);
+  assert.equal(body?.role_guess, "body");
+  assert.ok((body?.order ?? 0) > 0);
+});
+
+test("theme decoration stays out of the page copy", () => {
+  const chrome = new Set([
+    "Services",
+    "Our Services",
+    "About",
+    "About Transitional Healthcare Consultants",
+    "Team",
+    "Get In Touch",
+    "Contact",
+    "Blog News",
+    "Article & Tips",
+    "zPods \u00ae",
+  ]);
+  for (const slug of SLUGS) {
+    for (const text of keptStrings(slug)) {
+      assert.equal(text.startsWith("Transitional Healthcare Consultants > "), false, `${slug}: ${text}`);
+      assert.equal(chrome.has(text), false, `${slug}: ${text}`);
+    }
+    const model = buildPage(slug);
+    const rendered = [model.h1, model.subhead ?? ""];
+    for (const group of model.groups) {
+      for (const node of group.inlines) {
+        if ("text" in node) rendered.push(node.text);
+      }
+    }
+    for (const text of rendered) {
+      assert.equal(text.includes(" > "), false, `${slug} renders ${text}`);
+      assert.equal(chrome.has(text), false, `${slug} renders ${text}`);
+    }
+    assert.equal(
+      model.groups.some((group) =>
+        group.inlines.some(
+          (node) => node.kind === "p" && node.text === "Transitional Healthcare Consultants",
+        ),
+      ),
+      false,
+      slug,
+    );
+  }
+});
+
 test("each page keeps manifest photos in order, plus only the logged home substitutions", () => {
   const subFiles = SUBSTITUTIONS.map((item) => basename(item.file));
   for (const slug of SLUGS) {

@@ -24,7 +24,7 @@ const ctaHref = Astro.props.ctaHref ?? contactPath(city);
     <h2>{heading}</h2>
     {text && <p>{text}</p>}
     <div class="ctas">
-      <a class="btn btn-light" href={ctaHref}>{ctaLabel}</a>
+      <a class="btn btn-primary" href={ctaHref}>{ctaLabel}</a>
       <PhoneLink class="btn btn-outline" label={global.call.label} citySlug={city.slug} />
     </div>
   </div>
@@ -56,5 +56,10 @@ const ctaHref = Astro.props.ctaHref ?? contactPath(city);
 
   .cta-band :global(.phone-link) {
     text-decoration: none;
+  }
+
+  /* The band is already maroon, so the maroon button keeps a white edge. */
+  .cta-band :global(.btn-primary) {
+    border-color: var(--color-white);
   }
 </style>

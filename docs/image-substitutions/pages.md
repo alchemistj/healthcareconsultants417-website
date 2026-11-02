@@ -14,7 +14,8 @@ The fourth feature card, Quality Care, had no photo of hers that was not already
 
 - Decorative `line-*.png` and the partner strip `brand-1.png` through `brand-5.png`.
 - `service-center-image.png` (theme artwork; the subject is not one of her services).
-- The live homepage file `retired-couple-sitting-table-cafe-talking_23-2147950427.jpg`. It is stock and it is not in the manifest. The home hero is `Senior-Guidance.jpg`.
+- The home hero is the Revolution Slider photo `retired-couple-2023-11-27-05-10-48-utc.jpg`. `Senior-Guidance.jpg` stays a body photo at its own manifest position.
+- The other live file `retired-couple-sitting-table-cafe-talking_23-2147950427.jpg` is stock and is not used.
 - Mobile-only duplicates and `submit-spin.svg`.
 
 `legacyImageManifest.json` `excluded` has no themedraft rows for these seven pages. The demo files above were on the live homepage HTML.

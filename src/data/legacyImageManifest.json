@@ -222,6 +222,21 @@
       "type": "page",
       "images": [
         {
+          "order": 0,
+          "role": "hero",
+          "role_guess": "hero",
+          "kind": "bg",
+          "alt": "Smiling older couple",
+          "original_url": "https://www.healthcareconsultants417.com/wp-content/uploads/2024/12/retired-couple-2023-11-27-05-10-48-utc.jpg",
+          "original_width": 1920,
+          "original_height": 1080,
+          "hidden": false,
+          "mobile_only": false,
+          "section_hint": "slider_revolution medicare-header1",
+          "sha256": "bed2a3402dba9a516fbf982da61dbd7911b2e2f8f2d260d20a437741e0f55289",
+          "file": "src/assets/legacy/wp-content/uploads/2024/12/retired-couple-2023-11-27-05-10-48-utc.jpg"
+        },
+        {
           "order": 1,
           "role_guess": "body",
           "kind": "img",

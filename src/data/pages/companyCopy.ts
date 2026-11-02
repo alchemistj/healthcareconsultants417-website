@@ -66,7 +66,7 @@ export const PAGE_META: Record<string, PageMeta> = {
     description:
       "Compassionate relocation and medication management solutions for every life transition. From moving assistance to real estate prep\u2014enjoy stress-free support.",
     formButton: "Free Consultation",
-    heroPosition: "50% 45%",
+    heroPosition: "50% 30%",
   },
   "about-us": {
     slug: "about-us",
@@ -175,6 +175,21 @@ const THEME_EXACT = new Set([
   "25 Years Of Experience in Medical Services",
 ]);
 
+/** Doctio page-banner and section-title chrome: breadcrumb, faded watermark, eyebrow. */
+const THEME_CHROME_PARAGRAPHS = new Set([
+  "Services",
+  "Our Services",
+  "About",
+  "About Transitional Healthcare Consultants",
+  "Team",
+  "Transitional Healthcare Consultants",
+  "Get In Touch",
+  "Contact",
+  "Blog News",
+  "Article & Tips",
+  "zPods \u00ae",
+]);
+
 const FIELD_LABELS = new Set([
   "Please enable JavaScript in your browser to complete this form.",
   "Name *",
@@ -265,6 +280,16 @@ export type PageModel = {
   groups: PageGroup[];
 };
 
+function isSiteHomeHref(href: string | undefined): boolean {
+  if (!href) return false;
+  try {
+    const url = new URL(href, "https://www.healthcareconsultants417.com");
+    return url.hostname === "www.healthcareconsultants417.com" && (url.pathname === "/" || url.pathname === "");
+  } catch {
+    return false;
+  }
+}
+
 export function dropReason(block: CopyBlock): string | null {
   if (block.mobile_only) return "mobile-only duplicate";
   const text = (block.text ?? "").trim();
@@ -272,6 +297,11 @@ export function dropReason(block: CopyBlock): string | null {
   if (text.includes("arrow_right") || text.includes("BESbswy") || text.includes("incandescent")) {
     return "icon-font";
   }
+  if (text.startsWith("Transitional Healthcare Consultants > ")) return "breadcrumb";
+  if (block.type === "link" && text === "Transitional Healthcare Consultants" && isSiteHomeHref(block.href)) {
+    return "breadcrumb";
+  }
+  if (block.type === "p" && THEME_CHROME_PARAGRAPHS.has(text)) return "theme-chrome";
   if (/25\s*years/i.test(text)) return "25-years";
   if (/\bTravis\b/.test(text)) return "travis";
   if (THEME_EXACT.has(text)) return "theme-junk";

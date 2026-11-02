@@ -264,14 +264,15 @@ const isActive = (href: string) => current === href;
   }
 
   .quick-nav a:hover {
-    color: var(--color-primary);
+    color: var(--color-accent);
     text-decoration: underline;
   }
 
   .actions {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
+    flex-shrink: 0;
   }
 
   .site-header :global(.phone-desktop),
@@ -287,7 +288,11 @@ const isActive = (href: string) => current === href;
   }
 
   .site-header :global(.call-mobile) {
-    padding-inline: 16px;
+    padding-inline: 8px;
+    font-size: 0.8125rem;
+    line-height: 1;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .menu-btn {
