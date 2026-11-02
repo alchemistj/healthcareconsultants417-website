@@ -59,7 +59,7 @@ p + p {
 }
 
 a {
-  color: var(--color-primary);
+  color: var(--color-accent);
 }
 
 a:focus-visible,
@@ -130,7 +130,7 @@ summary:focus-visible {
 }
 
 .btn-primary {
-  background: var(--color-accent);
+  background: var(--color-primary);
   color: var(--color-white);
 }
 

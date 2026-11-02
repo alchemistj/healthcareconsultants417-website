@@ -1,7 +1,8 @@
 /**
  * One registry of every published URL. Sitemap, llms.txt, robots, internal-link checks and
  * tests read this list so they cannot disagree. A page not listed here is not published.
- * Legal pages are optional: they publish only if the old site has the copy (BUILD-SPEC).
+ * Legal pages stay optional and unpublished. Josh, Nov 2: do not build or publish
+ * /privacy-policy/ or /terms/.
  */
 
 import { CITIES, getActiveCitySlugs } from "@/data/cityConfig";
@@ -24,7 +25,7 @@ export type LaunchRoute = {
   linkTitle: string;
   /** Optional routes publish only when the copy exists. */
   optional?: boolean;
-  /** Legal pages stay false until Lane E confirms the copy exists. */
+  /** Legal routes stay false. Josh, Nov 2: privacy and terms are not built. */
   published: boolean;
   /** Old URL(s) this page replaces (redirects are Lane F's job). */
   legacyPaths?: readonly string[];

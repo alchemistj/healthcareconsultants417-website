@@ -1,6 +1,8 @@
 ---
 import { getCity, cityHomePath, contactPath, servicePath, telHref } from "@/data/cityConfig";
 import global from "@/data/copy/_global.json";
+import audit from "@/data/copy/pages/_global.audit.json";
+import { inlineLogo } from "@/data/pages/companyLogo";
 import PhoneLink from "./PhoneLink.astro";
 
 interface Props {
@@ -25,6 +27,11 @@ const topLinks = [
 const homeHref = cityHomePath(city);
 const servingText = `${global.serving.prefix} ${city.displayName}`;
 const ctaHref = contactPath(city);
+const hours = audit.areas
+  .flatMap((area) => area.blocks)
+  .find((block) => block.text === "Hours of Operation: Mon-Sun 8am-5pm")?.text;
+if (!hours) throw new Error("Hours of Operation line is missing from the audit copy.");
+const logo = await inlineLogo();
 
 // Exact matching so a link to a home page never lights up on every page.
 const isActive = (href: string) => current === href;
@@ -33,7 +40,10 @@ const isActive = (href: string) => current === href;
 <header class="site-header" data-site-header>
   <div class="top-bar">
     <div class="bar-inner">
-      <p class="serving">{servingText}</p>
+      <div class="serving-group">
+        <p class="serving">{servingText}</p>
+        <p class="hours">{hours}</p>
+      </div>
       <nav aria-label={`${global.a11y.mainNav} secondary`}>
         <ul>
           {
@@ -52,19 +62,13 @@ const isActive = (href: string) => current === href;
   <div class="main-bar">
     <div class="bar-inner">
       <a class="logo" href={homeHref} aria-label={global.brandName}>
-        <!-- Inline SVG logo. TODO-BRAND: placeholder mark until the real logo is extracted. -->
-        <svg
-          width="36"
-          height="36"
-          viewBox="0 0 36 36"
-          role="img"
-          aria-hidden="true"
-          focusable="false"
-        >
-          <rect width="36" height="36" rx="8" fill="var(--color-primary)"></rect>
-          <path d="M18 8v20M8 18h20" stroke="var(--color-white)" stroke-width="5" stroke-linecap="round"
-          ></path>
-        </svg>
+        <img
+          src={logo.src}
+          alt=""
+          width={logo.width}
+          height={logo.height}
+          decoding="async"
+        />
         <span class="logo-text">{global.brandName}</span>
       </a>
 
@@ -106,6 +110,7 @@ const isActive = (href: string) => current === href;
   <!-- Same links as the desktop header, same order, stacked. -->
   <div class="menu-panel" id="mobile-menu" data-menu-panel hidden>
     <p class="serving">{servingText}</p>
+    <p class="hours">{hours}</p>
     <ul>
       {
         topLinks.map((l) => (
@@ -187,8 +192,24 @@ const isActive = (href: string) => current === href;
     text-decoration: underline;
   }
 
-  .serving {
+  .serving-group {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+  }
+
+  .serving,
+  .hours {
     margin: 0;
+    white-space: nowrap;
+  }
+
+  .logo img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    flex-shrink: 0;
   }
 
   .main-bar {
@@ -212,7 +233,9 @@ const isActive = (href: string) => current === href;
   }
 
   .logo-text {
+    font-family: var(--font-heading);
     font-size: 0.95rem;
+    font-weight: 600;
     line-height: 1.15;
     max-width: 11em;
   }
@@ -241,14 +264,15 @@ const isActive = (href: string) => current === href;
   }
 
   .quick-nav a:hover {
-    color: var(--color-primary);
+    color: var(--color-accent);
     text-decoration: underline;
   }
 
   .actions {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
+    flex-shrink: 0;
   }
 
   .site-header :global(.phone-desktop),
@@ -264,7 +288,11 @@ const isActive = (href: string) => current === href;
   }
 
   .site-header :global(.call-mobile) {
-    padding-inline: 16px;
+    padding-inline: 8px;
+    font-size: 0.8125rem;
+    line-height: 1;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .menu-btn {
@@ -297,7 +325,8 @@ const isActive = (href: string) => current === href;
     display: none;
   }
 
-  .menu-panel .serving {
+  .menu-panel .serving,
+  .menu-panel .hours {
     font-size: 0.875rem;
     color: var(--text-muted);
     margin-bottom: 8px;
@@ -321,6 +350,16 @@ const isActive = (href: string) => current === href;
 
   .menu-panel .btn {
     width: 100%;
+  }
+
+  @media (min-width: 768px) and (max-width: 1100px) {
+    .top-bar {
+      font-size: 0.75rem;
+    }
+
+    .top-bar ul {
+      gap: 12px;
+    }
   }
 
   @media (min-width: 768px) {

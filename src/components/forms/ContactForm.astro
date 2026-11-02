@@ -1,0 +1,236 @@
+---
+interface Props {
+  buttonLabel: string;
+}
+
+const { buttonLabel } = Astro.props;
+---
+
+<form class="lead-form" data-lead-form novalidate>
+  <p>Please enable JavaScript in your browser to complete this form.</p>
+  <p class="name-label">Name *</p>
+  <div class="split">
+    <label>
+      First
+      <input name="first" autocomplete="given-name" maxlength="100" />
+    </label>
+    <label>
+      Last
+      <input name="last" autocomplete="family-name" maxlength="100" />
+    </label>
+  </div>
+  <label>
+    Email *
+    <input name="email" type="email" autocomplete="email" maxlength="320" />
+  </label>
+  <label>
+    Phone *
+    <input name="phone" type="tel" autocomplete="tel" maxlength="50" />
+  </label>
+  <label>
+    Subject *
+    <input name="subject" autocomplete="off" maxlength="200" />
+  </label>
+  <label>
+    Message *
+    <textarea name="message" rows="5" maxlength="5000"></textarea>
+  </label>
+  <label class="hp">
+    Website
+    <input name="website_url" tabindex="-1" autocomplete="off" />
+  </label>
+  <p data-form-loading>
+    Form loading… or call <a href="tel:+14177200818">(417) 720-0818</a>.
+  </p>
+  <button class="btn btn-primary" type="submit" disabled>{buttonLabel}</button>
+  <p class="status" role="status">
+    <span data-status></span>
+    <a data-status-phone href="tel:+14177200818" hidden>(417) 720-0818</a>
+  </p>
+  <noscript>
+    <p>This form needs JavaScript. Call us at <a href="tel:+14177200818">(417) 720-0818</a>.</p>
+  </noscript>
+</form>
+
+<script>
+  import {
+    buildLeadBody,
+    classifyLeadResponse,
+    currentAttemptId,
+    formKeys,
+    formsEndpoint,
+    resetAttemptId,
+  } from "@/lib/formsLead";
+
+  const form = document.querySelector<HTMLFormElement>("[data-lead-form]");
+  if (form) {
+    const button = form.querySelector<HTMLButtonElement>("button[type='submit']");
+    const status = form.querySelector<HTMLElement>("[data-status]");
+    const phone = form.querySelector<HTMLElement>("[data-status-phone]");
+    const loading = form.querySelector<HTMLElement>("[data-form-loading]");
+    if (button) button.disabled = false;
+    if (loading) loading.hidden = true;
+    let startedAt = new Date().toISOString();
+
+    const say = (message: string, showPhone: boolean) => {
+      if (status) status.textContent = message;
+      if (phone) phone.hidden = !showPhone;
+    };
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      void send();
+    });
+
+    async function send(): Promise<void> {
+      if (!button || !(form instanceof HTMLFormElement)) return;
+      const data = new FormData(form);
+      const read = (key: string) => String(data.get(key) ?? "").trim();
+      const email = read("email");
+      const phoneValue = read("phone");
+      if (!email && !phoneValue) {
+        say("Enter a phone number or an email, or call", true);
+        return;
+      }
+      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        say("Please check the fields, or call", true);
+        return;
+      }
+      const endpoint = formsEndpoint(location.hostname);
+      if (!endpoint) {
+        say("This form sends only from the live site. Please call", true);
+        return;
+      }
+      button.disabled = true;
+      const keys = formKeys();
+      const query = new URLSearchParams(location.search);
+      const body = buildLeadBody({
+        siteKey: keys.siteKey,
+        formKey: keys.formKey,
+        clientSubmissionId: currentAttemptId(),
+        first: read("first"),
+        last: read("last"),
+        email,
+        phone: phoneValue,
+        subject: read("subject"),
+        message: read("message"),
+        honeypot: read("website_url"),
+        formStartedAt: startedAt,
+        submittedAt: new Date().toISOString(),
+        pageUrl: location.href,
+        referrer: document.referrer || null,
+        utm: {
+          source: query.get("utm_source") ?? "",
+          medium: query.get("utm_medium") ?? "",
+          campaign: query.get("utm_campaign") ?? "",
+          term: query.get("utm_term") ?? "",
+          content: query.get("utm_content") ?? "",
+        },
+      });
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 45_000);
+      try {
+        const response = await fetch(endpoint, {
+          method: "POST",
+          mode: "cors",
+          credentials: "omit",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(body),
+          signal: controller.signal,
+        });
+        const json = (await response.json().catch(() => null)) as {
+          ok?: boolean;
+          id?: string;
+          saved?: boolean;
+        } | null;
+        const kind = classifyLeadResponse(response.status, json);
+        if (kind === "success") {
+          say("Thank you. We received your message.", false);
+          form.reset();
+          resetAttemptId();
+          startedAt = new Date().toISOString();
+          return;
+        }
+        if (kind === "invalid") {
+          resetAttemptId();
+          say("Please check the fields, or call", true);
+          return;
+        }
+        if (kind === "limited") {
+          say("Please wait a minute, or call", true);
+          return;
+        }
+        say("We could not confirm this message. Please call", true);
+      } catch {
+        say("We could not confirm this message. Please call", true);
+      } finally {
+        clearTimeout(timer);
+        button.disabled = false;
+      }
+    }
+  }
+</script>
+
+<style>
+  .lead-form {
+    display: grid;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .name-label,
+  label {
+    display: grid;
+    gap: 6px;
+    font-weight: 600;
+  }
+
+  .split {
+    display: grid;
+    gap: 12px;
+  }
+
+  @media (min-width: 640px) {
+    .split {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    min-height: 48px;
+    padding: 10px 12px;
+    border: 2px solid color-mix(in srgb, var(--color-dark) 30%, transparent);
+    border-radius: 6px;
+    font: inherit;
+    color: var(--color-dark);
+    background: var(--color-white);
+  }
+
+  textarea {
+    min-height: 140px;
+    resize: vertical;
+  }
+
+  button {
+    justify-self: start;
+  }
+
+  button:disabled {
+    opacity: 0.6;
+  }
+
+  .hp {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .status {
+    min-height: 1.5em;
+    margin: 0;
+  }
+</style>

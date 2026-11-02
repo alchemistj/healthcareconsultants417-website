@@ -1,0 +1,14 @@
+---
+import PageArticle from "../../_sections/PageArticle.astro";
+import { contactPage } from "@/data/pages/company";
+import { getActiveCitySlugs } from "@/data/cityConfig";
+
+export function getStaticPaths() {
+  return getActiveCitySlugs().map((city) => ({ params: { city } }));
+}
+
+const city = Astro.params.city;
+if (city !== "springfield") throw new Error(`Contact page is only built for Springfield, got ${city ?? ""}`);
+---
+
+<PageArticle model={contactPage} citySlug={city} />

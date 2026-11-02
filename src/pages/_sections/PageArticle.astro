@@ -1,0 +1,237 @@
+---
+import { basename, join } from "node:path";
+import { getImage } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { heroImage } from "@/lib/heroImage";
+import { SERVICE_CARD_TITLES, type Inline, type PageImage, type PageModel } from "@/data/pages/companyCopy";
+import Inlines from "./Inlines.astro";
+import Figure from "./Figure.astro";
+
+interface Props {
+  model: PageModel;
+  citySlug?: string;
+}
+
+const { model, citySlug = "springfield" } = Astro.props;
+
+const legacyImages = import.meta.glob<ImageMetadata>("../../assets/legacy/**/*.{jpg,jpeg,png,webp}", {
+  eager: true,
+  import: "default",
+});
+
+function lookup(file: string): ImageMetadata {
+  const suffix = file.replace(/^src\/assets\/legacy\//, "");
+  const key = Object.keys(legacyImages).find((entry) => entry.replaceAll("\\", "/").endsWith(suffix));
+  const image = key ? legacyImages[key] : undefined;
+  if (!image) throw new Error(`Missing legacy image ${file}`);
+  return image;
+}
+
+type ReadyImage = PageImage & { src: string; width: number; height: number; sourceFile: string };
+
+async function ready(image: PageImage, displayWidth: number): Promise<ReadyImage> {
+  const meta = lookup(image.file);
+  const displayHeight = Math.max(1, Math.round((displayWidth * meta.height) / meta.width));
+  const result = await getImage({ src: meta, width: displayWidth, height: displayHeight, format: "webp" });
+  return {
+    ...image,
+    src: result.src,
+    width: Number(result.attributes.width ?? displayWidth),
+    height: Number(result.attributes.height ?? displayHeight),
+    sourceFile: basename(image.file),
+  };
+}
+
+function isFeatureTitle(node: Inline): boolean {
+  return node.kind === "a" && node.text === node.text.toUpperCase() && /[A-Z]/.test(node.text) && node.text.length > 3;
+}
+
+function chunkFeature(inlines: Inline[]): Inline[][] {
+  const chunks: Inline[][] = [];
+  let current: Inline[] = [];
+  for (const node of inlines) {
+    if (isFeatureTitle(node) && current.length > 0) {
+      chunks.push(current);
+      current = [];
+    }
+    current.push(node);
+  }
+  if (current.length > 0) chunks.push(current);
+  return chunks;
+}
+
+function splitService(inlines: Inline[]): { lead: Inline[]; cards: Inline[][] } {
+  const lead: Inline[] = [];
+  const cards: Inline[][] = [];
+  let current: Inline[] | null = null;
+  for (const node of inlines) {
+    if (node.kind === "a" && SERVICE_CARD_TITLES.has(node.text)) {
+      if (current) cards.push(current);
+      current = [node];
+    } else if (current) current.push(node);
+    else lead.push(node);
+  }
+  if (current) cards.push(current);
+  return { lead, cards };
+}
+
+function altFor(image: ReadyImage, nodes: Inline[]): string {
+  if (image.alt.trim()) return image.alt;
+  const labeled = nodes.find((node) => node.kind === "heading" || node.kind === "a");
+  return labeled && "text" in labeled ? labeled.text : "";
+}
+
+const hero = await heroImage(join(process.cwd(), model.heroFile));
+const groups = await Promise.all(
+  model.groups.map(async (group) => {
+    const width = group.feature ? 300 : 440;
+    const images = await Promise.all(group.images.map((image) => ready(image, width)));
+    const featureChunks = group.feature ? chunkFeature(group.inlines) : [];
+    const service = !group.feature && images.length >= 3 ? splitService(group.inlines) : null;
+    const serviceCards = service && service.cards.length === images.length ? service : null;
+    return { ...group, images, featureChunks, serviceCards };
+  }),
+);
+---
+
+<BaseLayout
+  title={model.title}
+  description={model.description}
+  path={model.path}
+  citySlug={citySlug}
+  hero={{
+    heading: model.h1,
+    subhead: model.subhead,
+    image: hero,
+    alt: model.heroAlt,
+    objectPosition: model.heroPosition,
+  }}
+>
+  <link slot="head" rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link slot="head" rel="icon" type="image/png" href="/favicon.png" />
+  {
+    groups.map((group) => (
+      <section class="section">
+        <div class="container">
+          {group.feature ? (
+            <div class="feature">
+              {group.featureChunks.map((chunk, index) => (
+                <article>
+                  <Inlines nodes={chunk} buttonLabel={model.formButton} />
+                  {group.images[index] && (
+                    <Figure
+                      src={group.images[index].src}
+                      width={group.images[index].width}
+                      height={group.images[index].height}
+                      alt={altFor(group.images[index], chunk)}
+                      position={group.images[index].position}
+                      fit={group.images[index].fit}
+                      sourceFile={group.images[index].sourceFile}
+                    />
+                  )}
+                </article>
+              ))}
+            </div>
+          ) : group.serviceCards ? (
+            <div>
+              <Inlines nodes={group.serviceCards.lead} buttonLabel={model.formButton} />
+              <div class="cards">
+                {group.serviceCards.cards.map((card, index) => (
+                  <article>
+                    <Inlines nodes={card} buttonLabel={model.formButton} />
+                    {group.images[index] && (
+                      <Figure
+                        src={group.images[index].src}
+                        width={group.images[index].width}
+                        height={group.images[index].height}
+                        alt={altFor(group.images[index], card)}
+                        position={group.images[index].position}
+                        fit={group.images[index].fit}
+                        sourceFile={group.images[index].sourceFile}
+                      />
+                    )}
+                  </article>
+                ))}
+              </div>
+            </div>
+          ) : group.images.length === 1 ? (
+            <div class="two" data-side={group.side}>
+              <div>
+                <Inlines nodes={group.inlines} buttonLabel={model.formButton} />
+              </div>
+              <Figure
+                src={group.images[0].src}
+                width={group.images[0].width}
+                height={group.images[0].height}
+                alt={altFor(group.images[0], group.inlines)}
+                position={group.images[0].position}
+                fit={group.images[0].fit}
+                sourceFile={group.images[0].sourceFile}
+              />
+            </div>
+          ) : (
+            <div>
+              <Inlines nodes={group.inlines} buttonLabel={model.formButton} />
+              {group.images.map((image) => (
+                <Figure
+                  src={image.src}
+                  width={image.width}
+                  height={image.height}
+                  alt={altFor(image, group.inlines)}
+                  position={image.position}
+                  fit={image.fit}
+                  sourceFile={image.sourceFile}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+    ))
+  }
+</BaseLayout>
+
+<style>
+  .feature,
+  .cards {
+    display: grid;
+    gap: 28px;
+  }
+
+  .feature article,
+  .cards article {
+    display: grid;
+    gap: 12px;
+    align-content: start;
+  }
+
+  .two {
+    display: grid;
+    gap: 24px;
+  }
+
+  @media (min-width: 768px) {
+    .feature {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .cards {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .two {
+      grid-template-columns: 58fr 42fr;
+      gap: 36px;
+      align-items: start;
+    }
+
+    .two[data-side="left"] {
+      grid-template-columns: 42fr 58fr;
+    }
+
+    .two[data-side="left"] :global(.frame) {
+      order: -1;
+    }
+  }
+</style>
