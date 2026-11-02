@@ -62,6 +62,12 @@ a {
   color: var(--color-accent);
 }
 
+/* Links inside running text are underlined, not told apart by color alone (WCAG 1.4.1). */
+main :is(p, li) a:not(.btn) {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 a:focus-visible,
 button:focus-visible,
 summary:focus-visible {

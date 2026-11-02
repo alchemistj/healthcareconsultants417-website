@@ -1,6 +1,7 @@
 ---
 import ContactForm from "@/components/forms/ContactForm.astro";
 import type { Inline } from "@/data/pages/companyCopy";
+import { getCity, servicePath } from "@/data/cityConfig";
 
 interface Props {
   nodes: Inline[];
@@ -43,13 +44,28 @@ function escapeHtml(value: string): string {
   return value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");
 }
 
-/** One string, no extra text nodes, so the copy stays character for character. */
+/** Old-site link labels that say nothing about where they go ("Read More"). */
+const GENERIC_LINK_TEXT = new Set(["read more"]);
+
+/** Service name for a service-page href, used only as hidden link context. */
+function hiddenContext(text: string, href: string): string {
+  if (!GENERIC_LINK_TEXT.has(text.trim().toLowerCase())) return "";
+  const city = getCity();
+  const service = city.services.find((item) => servicePath(city, item) === href);
+  return service ? `<span class="visually-hidden"> about ${escapeHtml(service.name)}</span>` : "";
+}
+
+/**
+ * One string, no extra text nodes, so the visible copy stays character for character.
+ * A generic "Read More" keeps its visible text and gains a visually hidden service name, so
+ * screen readers and search engines get a descriptive link (Lighthouse link-text).
+ */
 function markup(text: string, href?: string, button = false): string {
   return parts(text, href)
     .map((part) => {
       if (!part.href) return escapeHtml(part.text);
       const buttonClass = button && part.href === href ? ' class="btn btn-primary"' : "";
-      return `<a${buttonClass} href="${escapeHtml(part.href)}">${escapeHtml(part.text)}</a>`;
+      return `<a${buttonClass} href="${escapeHtml(part.href)}">${escapeHtml(part.text)}${hiddenContext(part.text, part.href)}</a>`;
     })
     .join("");
 }
@@ -88,7 +104,8 @@ for (const node of nodes) {
     if (node.kind !== "heading") return null;
     const html = markup(node.text, node.href);
     if (node.level === 3) return <h3 set:html={html} />;
-    if (node.level === 4) return <h4 set:html={html} />;
+    // Old pages jump from h2 to h4. Keep the h4 look but use h3 so heading levels never skip (a11y).
+    if (node.level === 4) return <h3 class="minor" set:html={html} />;
     return <h2 id={node.id} set:html={html} />;
   })
 }
@@ -107,6 +124,10 @@ for (const node of nodes) {
 
   h2 {
     color: var(--color-accent);
+  }
+
+  h3.minor {
+    font-size: 1rem;
   }
 
   .action {
