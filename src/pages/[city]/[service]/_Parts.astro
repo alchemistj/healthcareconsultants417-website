@@ -1,0 +1,11 @@
+---
+import type { Part } from "@/data/services/types.ts";
+
+interface Props {
+  parts: Part[];
+}
+
+const { parts } = Astro.props;
+---
+
+{parts.map((part) => (part.href ? <a href={part.href}>{part.text}</a> : part.text))}

@@ -1,0 +1,65 @@
+---
+import global from "@/data/copy/_global.json";
+import { getCity, contactPath } from "@/data/cityConfig";
+import PhoneLink from "./PhoneLink.astro";
+
+interface Props {
+  heading: string;
+  text?: string;
+  /** Defaults to the shared CTA label and the city contact page. */
+  ctaLabel?: string;
+  ctaHref?: string;
+  citySlug?: string;
+}
+
+const city = getCity(Astro.props.citySlug);
+const { heading, text } = Astro.props;
+const ctaLabel = Astro.props.ctaLabel ?? global.cta.label;
+const ctaHref = Astro.props.ctaHref ?? contactPath(city);
+---
+
+<!-- Always the last section before the footer. -->
+<section class="cta-band">
+  <div class="container">
+    <h2>{heading}</h2>
+    {text && <p>{text}</p>}
+    <div class="ctas">
+      <a class="btn btn-primary" href={ctaHref}>{ctaLabel}</a>
+      <PhoneLink class="btn btn-outline" label={global.call.label} citySlug={city.slug} />
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-band {
+    background: var(--color-primary);
+    color: var(--color-white);
+    padding-block: 64px;
+  }
+
+  h2 {
+    margin: 0 0 12px;
+    color: var(--color-white);
+  }
+
+  p {
+    margin: 0;
+    max-width: 36em;
+  }
+
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .cta-band :global(.phone-link) {
+    text-decoration: none;
+  }
+
+  /* The band is already maroon, so the maroon button keeps a white edge. */
+  .cta-band :global(.btn-primary) {
+    border-color: var(--color-white);
+  }
+</style>

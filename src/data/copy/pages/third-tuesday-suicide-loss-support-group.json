@@ -1,0 +1,107 @@
+{
+  "url": "https://www.healthcareconsultants417.com/third-tuesday-suicide-loss-support-group/",
+  "slug": "third-tuesday-suicide-loss-support-group",
+  "type": "post",
+  "crawl_status": 200,
+  "errors": [],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "Facebook",
+      "href": "https://www.facebook.com/"
+    },
+    {
+      "type": "p",
+      "text": "Email or phone"
+    },
+    {
+      "type": "p",
+      "text": "Password"
+    },
+    {
+      "type": "link",
+      "text": "Forgot account?",
+      "href": "https://www.facebook.com/recover/initiate?lwv=110&ars=royal_blue_bar"
+    },
+    {
+      "type": "button",
+      "text": "Sign Up",
+      "href": "/r.php?locale=en_US"
+    },
+    {
+      "type": "h2",
+      "text": "Error loading events"
+    },
+    {
+      "type": "h2",
+      "text": "Error loading events"
+    },
+    {
+      "type": "p",
+      "text": "There was an error loading events. Please try again and if the problem continues report this as a bug."
+    },
+    {
+      "type": "link",
+      "text": "Return home",
+      "href": "/"
+    },
+    {
+      "type": "li",
+      "text": "English (US)"
+    },
+    {
+      "type": "li",
+      "text": "Español",
+      "href": "https://es-la.facebook.com/event_invite/5GyOlybav/"
+    },
+    {
+      "type": "li",
+      "text": "Français (France)",
+      "href": "https://fr-fr.facebook.com/event_invite/5GyOlybav/"
+    },
+    {
+      "type": "li",
+      "text": "中文(简体)",
+      "href": "https://zh-cn.facebook.com/event_invite/5GyOlybav/"
+    },
+    {
+      "type": "li",
+      "text": "العربية",
+      "href": "https://ar-ar.facebook.com/event_invite/5GyOlybav/"
+    },
+    {
+      "type": "li",
+      "text": "Português (Brasil)",
+      "href": "https://pt-br.facebook.com/event_invite/5GyOlybav/"
+    },
+    {
+      "type": "li",
+      "text": "Italiano",
+      "href": "https://it-it.facebook.com/event_invite/5GyOlybav/"
+    },
+    {
+      "type": "li",
+      "text": "한국어",
+      "href": "https://ko-kr.facebook.com/event_invite/5GyOlybav/"
+    },
+    {
+      "type": "li",
+      "text": "Deutsch",
+      "href": "https://de-de.facebook.com/event_invite/5GyOlybav/"
+    },
+    {
+      "type": "li",
+      "text": "हिन्दी",
+      "href": "https://hi-in.facebook.com/event_invite/5GyOlybav/"
+    },
+    {
+      "type": "li",
+      "text": "日本語",
+      "href": "https://ja-jp.facebook.com/event_invite/5GyOlybav/"
+    },
+    {
+      "type": "p",
+      "text": "Meta © 2026"
+    }
+  ]
+}

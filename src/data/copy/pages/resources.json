@@ -1,0 +1,58 @@
+{
+  "url": "https://www.healthcareconsultants417.com/resources/",
+  "slug": "resources",
+  "type": "post",
+  "crawl_status": 200,
+  "errors": [],
+  "blocks": [
+    {
+      "type": "h2",
+      "text": "Resources"
+    },
+    {
+      "type": "p",
+      "text": "Transitional Healthcare Consultants > Resources"
+    },
+    {
+      "type": "link",
+      "text": "Transitional Healthcare Consultants",
+      "href": "https://www.healthcareconsultants417.com"
+    },
+    {
+      "type": "h3",
+      "text": "Third Tuesday Suicide Loss Support Group",
+      "href": "https://www.healthcareconsultants417.com/third-tuesday-suicide-loss-support-group/"
+    },
+    {
+      "type": "p",
+      "text": "If you’ve lost someone to suicide, you don’t have to navigate the grief alone. Our monthly gathering is a safe [...]"
+    },
+    {
+      "type": "h3",
+      "text": "Rise & Thrive Podcast",
+      "href": "https://www.healthcareconsultants417.com/rise-thrive-podcast/"
+    },
+    {
+      "type": "p",
+      "text": "A conversation series where real people share real stories of finding hope, identity, and purpose through life’s hardest moments. [...]"
+    },
+    {
+      "type": "h3",
+      "text": "Veterans of the Ozarks Suicide Prevention",
+      "href": "https://www.healthcareconsultants417.com/veterans-of-the-ozarks-suicide-prevention/"
+    },
+    {
+      "type": "p",
+      "text": "Question. Persuade. Refer. Our Mission: To save lives and reduce suicidal behaviors by providing innovative, practical and proven suicide prevention [...]"
+    },
+    {
+      "type": "h3",
+      "text": "Veterans & Military Coalition of the Ozarks",
+      "href": "https://www.healthcareconsultants417.com/veterans-military-coalition-of-the-ozarks/"
+    },
+    {
+      "type": "p",
+      "text": "VMCO Supports Veterans by assisting Veterans and their families in obtaining benefits and services earned through military service and provided [...]"
+    }
+  ]
+}

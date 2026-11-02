@@ -1,0 +1,67 @@
+---
+// Scratch page that exercises every shell component. noindex. REMOVE BEFORE LAUNCH
+// (together with the dev-scratch-page integration in astro.config.mjs and src/assets/_dev/).
+import { join } from "node:path";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import TrustBar from "@/components/TrustBar.astro";
+import TwoCol from "@/components/TwoCol.astro";
+import ReviewBand from "@/components/ReviewBand.astro";
+import RelatedBand from "@/components/RelatedBand.astro";
+import CtaBand from "@/components/CtaBand.astro";
+import FaqList from "@/components/FaqList.astro";
+import { heroImage } from "@/lib/heroImage";
+import devPhoto from "@/assets/_dev/dev-photo.jpg";
+
+const hero = await heroImage(join(process.cwd(), "src/assets/_dev/dev-photo.jpg"), {
+  effort: 4,
+});
+const filler = ["Sample paragraph for the shell check.", "A second sample paragraph so the columns have height."];
+---
+
+<BaseLayout
+  title="Shell Check (dev only)"
+  description="Scratch page that exercises every shell component. Not published."
+  path="/_dev/"
+  noindex
+  hero={{
+    eyebrow: "Sample eyebrow",
+    heading: "Sample Hero Heading",
+    subhead: "Sample subhead for the shell check.",
+    image: hero,
+    alt: "",
+  }}
+>
+  <TrustBar items={["Sample credential one", "Sample credential two"]} serving="Sample serving line" callText="Call Sample" />
+
+  <section class="section">
+    <div class="container">
+      <h2>Sample Text Section</h2>
+      {filler.map((p) => <p>{p}</p>)}
+    </div>
+  </section>
+
+  <TwoCol heading="Sample Two-Column One" paragraphs={filler} image={devPhoto} alt="Synthetic dev placeholder" side="right" />
+
+  <ReviewBand quote="Sample review text for the shell check." name="Sample R." />
+
+  <TwoCol heading="Sample Two-Column Two" paragraphs={filler} image={devPhoto} alt="Synthetic dev placeholder" side="left" />
+
+  <RelatedBand
+    heading="Sample Related"
+    items={[
+      { title: "Sample One", text: "One short sentence.", href: "/springfield/senior-relocation/" },
+      { title: "Sample Two", text: "One short sentence.", href: "/springfield/senior-downsizing/" },
+      { title: "Sample Three", href: "/springfield/transitional-care/" },
+    ]}
+  />
+
+  <FaqList
+    heading="Sample FAQ"
+    items={[
+      { question: "Sample question one?", answer: "Sample answer one." },
+      { question: "Sample question two?", answer: "Sample answer two." },
+    ]}
+  />
+
+  <CtaBand heading="Sample Final CTA" text="One or two sample sentences." />
+</BaseLayout>

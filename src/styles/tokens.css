@@ -1,0 +1,48 @@
+/*
+ * Design tokens. Four brand colors, two self-hosted fonts, one content width.
+ *
+ * Colors are the old site's real brand colors, taken from computed styles in the audit
+ * (ff-architect docs/clients/healthcareconsultants417/audit/brand.json):
+ *   dark    #152133  (dark navy section backgrounds)
+ *   primary #742839  (maroon bands and buttons)
+ *   accent  #2042A6  (blue headings and links)
+ * The old site's coral (#F69574) is left out to stay at four colors; it fails AA as text on white.
+ * All three pass WCAG AA with white text and as text on white.
+ *
+ * Fonts (Josh, Nov 2): Poppins 600 for headings and Rubik 400 for body.
+ * Latin woff2 only, from @fontsource, font-display: swap, no preload, never Google-hosted.
+ */
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../../node_modules/@fontsource/poppins/files/poppins-latin-600-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../../node_modules/@fontsource/rubik/files/rubik-latin-400-normal.woff2") format("woff2");
+}
+
+:root {
+  --color-dark: #152133;
+  --color-white: #ffffff;
+  --color-primary: #742839;
+  --color-accent: #2042a6;
+
+  --font-heading: "Poppins", system-ui, sans-serif;
+  --font-body: "Rubik", system-ui, sans-serif;
+
+  --content-max: 900px;
+  --content-pad: 24px;
+}
+
+/* global.css sets h1–h3 to weight 700. This wins so headings use the one shipped Poppins weight. */
+html body :is(h1, h2, h3, h4) {
+  font-family: var(--font-heading);
+  font-weight: 600;
+}

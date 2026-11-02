@@ -1,0 +1,102 @@
+---
+import global from "@/data/copy/_global.json";
+import { getCity, cityHomePath, contactPath, servicePath } from "@/data/cityConfig";
+import PhoneLink from "./PhoneLink.astro";
+
+interface Props {
+  citySlug?: string;
+}
+
+const city = getCity(Astro.props.citySlug);
+
+const companyLinks = [
+  { href: cityHomePath(city), label: global.nav.home },
+  { href: "/about/", label: global.nav.about },
+  { href: "/zpods-medical-mission/", label: global.nav.zpodsMission },
+  { href: "/transitional-healthcare/", label: global.nav.transitionalHealthcare },
+  { href: "/resources/", label: global.nav.resources },
+  { href: contactPath(city), label: global.nav.contact },
+];
+const serviceLinks = city.services.map((s) => ({ href: servicePath(city, s), label: s.name }));
+const { address } = city;
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <h2>{global.footer.servicesHeading}</h2>
+      <ul>
+        {serviceLinks.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+      </ul>
+    </div>
+    <div>
+      <h2>{global.footer.companyHeading}</h2>
+      <ul>
+        {companyLinks.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+      </ul>
+    </div>
+    <div>
+      <h2>{global.footer.contactHeading}</h2>
+      <p class="brand">{global.brandName}</p>
+      <address>
+        {address.street}<br />
+        {address.city}, {address.state} {address.postalCode}
+      </address>
+      <p><PhoneLink citySlug={city.slug} /></p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-dark);
+    color: var(--color-white);
+    padding-block: 48px;
+  }
+
+  .footer-grid {
+    display: grid;
+    gap: 32px;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    margin: 0 0 12px;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .site-footer :global(a) {
+    color: var(--color-white);
+  }
+
+  li a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+  }
+
+  address {
+    font-style: normal;
+    margin-bottom: 12px;
+  }
+
+  .brand {
+    margin: 0 0 8px;
+    font-weight: 700;
+  }
+
+  @media (min-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1.2fr 1fr 1fr;
+    }
+
+    li a {
+      min-height: 36px;
+    }
+  }
+</style>

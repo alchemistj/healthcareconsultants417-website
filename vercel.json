@@ -1,0 +1,1536 @@
+{
+  "cleanUrls": false,
+  "redirects": [
+    {
+      "source": "/about-us",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/about-us/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/team/rachal-payne",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/about-rachal-payne/",
+      "statusCode": 301
+    },
+    {
+      "source": "/team/rachal-payne/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/about-rachal-payne/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/community-placement",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/senior-community-placement/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/community-placement/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/senior-community-placement/",
+      "statusCode": 301
+    },
+    {
+      "source": "/senior-relocation-services",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/senior-relocation/",
+      "statusCode": 301
+    },
+    {
+      "source": "/senior-relocation-services/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/senior-relocation/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/relocation",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/senior-relocation/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/relocation/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/senior-relocation/",
+      "statusCode": 301
+    },
+    {
+      "source": "/zpod-beds",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/zpod-sensory-beds/",
+      "statusCode": 301
+    },
+    {
+      "source": "/zpod-beds/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/zpod-sensory-beds/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/assistive-technology",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/zpod-sensory-beds/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/assistive-technology/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/zpod-sensory-beds/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/suicide-awareness",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/suicide-awareness/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/suicide-awareness/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/suicide-awareness/",
+      "statusCode": 301
+    },
+    {
+      "source": "/senior-downsizing-help",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/senior-downsizing/",
+      "statusCode": 301
+    },
+    {
+      "source": "/senior-downsizing-help/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/senior-downsizing/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/transitional-care",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/transitional-care/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/transitional-care/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/transitional-care/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/hospital-to-home-transition",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/hospital-to-home-transition/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/hospital-to-home-transition/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/hospital-to-home-transition/",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact-us",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/contact/",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact-us/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/contact/",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact-and-support",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/contact/",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact-and-support/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/contact/",
+      "statusCode": 301
+    },
+    {
+      "source": "/about-use0f1ee6f",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/about-use0f1ee6f/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/our-services",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/our-services/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/medicalconsulting",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/medicalconsulting/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/case-management",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/case-management/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/hospital-to-home-transition-coordination",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/hospital-to-home-transition/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/hospital-to-home-transition-coordination/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/hospital-to-home-transition/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/medical-chart-investigations",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/medical-chart-investigations/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/genetic-testing",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/genetic-testing/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/health-advocacy-and-case-management-services",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/health-advocacy-and-case-management-services/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/home-safety-evaluations",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/transitional-healthcare/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/home-safety-evaluations/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/transitional-healthcare/",
+      "statusCode": 301
+    },
+    {
+      "source": "/veterans-of-the-ozarks-2025-calendar-of-events",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/suicide-awareness/",
+      "statusCode": 301
+    },
+    {
+      "source": "/veterans-of-the-ozarks-2025-calendar-of-events/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/suicide-awareness/",
+      "statusCode": 301
+    },
+    {
+      "source": "/expecting-how-to-choose-a-life-insurance-policy",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/resources/",
+      "statusCode": 301
+    },
+    {
+      "source": "/expecting-how-to-choose-a-life-insurance-policy/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/resources/",
+      "statusCode": 301
+    },
+    {
+      "source": "/zpods-health-benefits",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/zpod-sensory-beds/",
+      "statusCode": 301
+    },
+    {
+      "source": "/zpods-health-benefits/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/zpod-sensory-beds/",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact-us-2-2",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact-us-2-2/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact-us-2",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact-us-2/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/third-tuesday-suicide-loss-support-group",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/suicide-awareness/",
+      "statusCode": 301
+    },
+    {
+      "source": "/third-tuesday-suicide-loss-support-group/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/suicide-awareness/",
+      "statusCode": 301
+    },
+    {
+      "source": "/rise-thrive-podcast",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/resources/",
+      "statusCode": 301
+    },
+    {
+      "source": "/rise-thrive-podcast/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/resources/",
+      "statusCode": 301
+    },
+    {
+      "source": "/veterans-military-coalition-of-the-ozarks",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/suicide-awareness/",
+      "statusCode": 301
+    },
+    {
+      "source": "/veterans-military-coalition-of-the-ozarks/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/suicide-awareness/",
+      "statusCode": 301
+    },
+    {
+      "source": "/veterans-of-the-ozarks-suicide-prevention",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/suicide-awareness/",
+      "statusCode": 301
+    },
+    {
+      "source": "/veterans-of-the-ozarks-suicide-prevention/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/suicide-awareness/",
+      "statusCode": 301
+    },
+    {
+      "source": "/shop",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/shop/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/cart",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/cart/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/checkout",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/checkout/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/my-account",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/my-account/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wishlist",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wishlist/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/shop-10",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/shop-10/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/my-account-2",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/my-account-2/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/product/:slug",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/product/:slug/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/life-insurance-tips",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/resources/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/life-insurance-tips/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/resources/",
+      "statusCode": 301
+    },
+    {
+      "source": "/team/:member",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/team/:member/",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/about",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/about-rachal-payne",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/about-rachal-payne/",
+      "statusCode": 301
+    },
+    {
+      "source": "/zpods-medical-mission",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/zpods-medical-mission/",
+      "statusCode": 301
+    },
+    {
+      "source": "/transitional-healthcare",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/transitional-healthcare/",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/resources/",
+      "statusCode": 301
+    },
+    {
+      "source": "/springfield/senior-community-placement",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/senior-community-placement/",
+      "statusCode": 301
+    },
+    {
+      "source": "/springfield/senior-relocation",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/senior-relocation/",
+      "statusCode": 301
+    },
+    {
+      "source": "/springfield/zpod-sensory-beds",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/zpod-sensory-beds/",
+      "statusCode": 301
+    },
+    {
+      "source": "/springfield/suicide-awareness",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/suicide-awareness/",
+      "statusCode": 301
+    },
+    {
+      "source": "/springfield/senior-downsizing",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/senior-downsizing/",
+      "statusCode": 301
+    },
+    {
+      "source": "/springfield/transitional-care",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/transitional-care/",
+      "statusCode": 301
+    },
+    {
+      "source": "/springfield/hospital-to-home-transition",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/hospital-to-home-transition/",
+      "statusCode": 301
+    },
+    {
+      "source": "/springfield/contact",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/springfield/contact/",
+      "statusCode": 301
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "healthcareconsultants417.com"
+        }
+      ],
+      "destination": "https://www.healthcareconsultants417.com/:path*",
+      "statusCode": 301
+    },
+    {
+      "source": "/about-us",
+      "destination": "/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/about-us/",
+      "destination": "/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/team/rachal-payne",
+      "destination": "/about-rachal-payne/",
+      "statusCode": 301
+    },
+    {
+      "source": "/team/rachal-payne/",
+      "destination": "/about-rachal-payne/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/community-placement",
+      "destination": "/springfield/senior-community-placement/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/community-placement/",
+      "destination": "/springfield/senior-community-placement/",
+      "statusCode": 301
+    },
+    {
+      "source": "/senior-relocation-services",
+      "destination": "/springfield/senior-relocation/",
+      "statusCode": 301
+    },
+    {
+      "source": "/senior-relocation-services/",
+      "destination": "/springfield/senior-relocation/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/relocation",
+      "destination": "/springfield/senior-relocation/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/relocation/",
+      "destination": "/springfield/senior-relocation/",
+      "statusCode": 301
+    },
+    {
+      "source": "/zpod-beds",
+      "destination": "/springfield/zpod-sensory-beds/",
+      "statusCode": 301
+    },
+    {
+      "source": "/zpod-beds/",
+      "destination": "/springfield/zpod-sensory-beds/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/assistive-technology",
+      "destination": "/springfield/zpod-sensory-beds/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/assistive-technology/",
+      "destination": "/springfield/zpod-sensory-beds/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/suicide-awareness",
+      "destination": "/springfield/suicide-awareness/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/suicide-awareness/",
+      "destination": "/springfield/suicide-awareness/",
+      "statusCode": 301
+    },
+    {
+      "source": "/senior-downsizing-help",
+      "destination": "/springfield/senior-downsizing/",
+      "statusCode": 301
+    },
+    {
+      "source": "/senior-downsizing-help/",
+      "destination": "/springfield/senior-downsizing/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/transitional-care",
+      "destination": "/springfield/transitional-care/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/transitional-care/",
+      "destination": "/springfield/transitional-care/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/hospital-to-home-transition",
+      "destination": "/springfield/hospital-to-home-transition/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/hospital-to-home-transition/",
+      "destination": "/springfield/hospital-to-home-transition/",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact-us",
+      "destination": "/springfield/contact/",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact-us/",
+      "destination": "/springfield/contact/",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact-and-support",
+      "destination": "/springfield/contact/",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact-and-support/",
+      "destination": "/springfield/contact/",
+      "statusCode": 301
+    },
+    {
+      "source": "/about-use0f1ee6f",
+      "destination": "/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/about-use0f1ee6f/",
+      "destination": "/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/our-services",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/our-services/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/medicalconsulting",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/medicalconsulting/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/case-management",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/case-management/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/hospital-to-home-transition-coordination",
+      "destination": "/springfield/hospital-to-home-transition/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/hospital-to-home-transition-coordination/",
+      "destination": "/springfield/hospital-to-home-transition/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/medical-chart-investigations",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/medical-chart-investigations/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/genetic-testing",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/genetic-testing/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/health-advocacy-and-case-management-services",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/health-advocacy-and-case-management-services/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/home-safety-evaluations",
+      "destination": "/transitional-healthcare/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/home-safety-evaluations/",
+      "destination": "/transitional-healthcare/",
+      "statusCode": 301
+    },
+    {
+      "source": "/veterans-of-the-ozarks-2025-calendar-of-events",
+      "destination": "/springfield/suicide-awareness/",
+      "statusCode": 301
+    },
+    {
+      "source": "/veterans-of-the-ozarks-2025-calendar-of-events/",
+      "destination": "/springfield/suicide-awareness/",
+      "statusCode": 301
+    },
+    {
+      "source": "/expecting-how-to-choose-a-life-insurance-policy",
+      "destination": "/resources/",
+      "statusCode": 301
+    },
+    {
+      "source": "/expecting-how-to-choose-a-life-insurance-policy/",
+      "destination": "/resources/",
+      "statusCode": 301
+    },
+    {
+      "source": "/zpods-health-benefits",
+      "destination": "/springfield/zpod-sensory-beds/",
+      "statusCode": 301
+    },
+    {
+      "source": "/zpods-health-benefits/",
+      "destination": "/springfield/zpod-sensory-beds/",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact-us-2-2",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact-us-2-2/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact-us-2",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact-us-2/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/third-tuesday-suicide-loss-support-group",
+      "destination": "/springfield/suicide-awareness/",
+      "statusCode": 301
+    },
+    {
+      "source": "/third-tuesday-suicide-loss-support-group/",
+      "destination": "/springfield/suicide-awareness/",
+      "statusCode": 301
+    },
+    {
+      "source": "/rise-thrive-podcast",
+      "destination": "/resources/",
+      "statusCode": 301
+    },
+    {
+      "source": "/rise-thrive-podcast/",
+      "destination": "/resources/",
+      "statusCode": 301
+    },
+    {
+      "source": "/veterans-military-coalition-of-the-ozarks",
+      "destination": "/springfield/suicide-awareness/",
+      "statusCode": 301
+    },
+    {
+      "source": "/veterans-military-coalition-of-the-ozarks/",
+      "destination": "/springfield/suicide-awareness/",
+      "statusCode": 301
+    },
+    {
+      "source": "/veterans-of-the-ozarks-suicide-prevention",
+      "destination": "/springfield/suicide-awareness/",
+      "statusCode": 301
+    },
+    {
+      "source": "/veterans-of-the-ozarks-suicide-prevention/",
+      "destination": "/springfield/suicide-awareness/",
+      "statusCode": 301
+    },
+    {
+      "source": "/shop",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/shop/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/cart",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/cart/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/checkout",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/checkout/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/my-account",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/my-account/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wishlist",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wishlist/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/shop-10",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/shop-10/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/my-account-2",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/my-account-2/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/product/:slug",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/product/:slug/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/life-insurance-tips",
+      "destination": "/resources/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/life-insurance-tips/",
+      "destination": "/resources/",
+      "statusCode": 301
+    },
+    {
+      "source": "/team/:member",
+      "destination": "/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/team/:member/",
+      "destination": "/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/about",
+      "destination": "/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/about-rachal-payne",
+      "destination": "/about-rachal-payne/",
+      "statusCode": 301
+    },
+    {
+      "source": "/zpods-medical-mission",
+      "destination": "/zpods-medical-mission/",
+      "statusCode": 301
+    },
+    {
+      "source": "/transitional-healthcare",
+      "destination": "/transitional-healthcare/",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources",
+      "destination": "/resources/",
+      "statusCode": 301
+    },
+    {
+      "source": "/springfield/senior-community-placement",
+      "destination": "/springfield/senior-community-placement/",
+      "statusCode": 301
+    },
+    {
+      "source": "/springfield/senior-relocation",
+      "destination": "/springfield/senior-relocation/",
+      "statusCode": 301
+    },
+    {
+      "source": "/springfield/zpod-sensory-beds",
+      "destination": "/springfield/zpod-sensory-beds/",
+      "statusCode": 301
+    },
+    {
+      "source": "/springfield/suicide-awareness",
+      "destination": "/springfield/suicide-awareness/",
+      "statusCode": 301
+    },
+    {
+      "source": "/springfield/senior-downsizing",
+      "destination": "/springfield/senior-downsizing/",
+      "statusCode": 301
+    },
+    {
+      "source": "/springfield/transitional-care",
+      "destination": "/springfield/transitional-care/",
+      "statusCode": 301
+    },
+    {
+      "source": "/springfield/hospital-to-home-transition",
+      "destination": "/springfield/hospital-to-home-transition/",
+      "statusCode": 301
+    },
+    {
+      "source": "/springfield/contact",
+      "destination": "/springfield/contact/",
+      "statusCode": 301
+    }
+  ]
+}

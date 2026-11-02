@@ -1,0 +1,34 @@
+{
+  "_note": "Shell labels from the old site's header/menu (see pages/_global.audit.json). CTA 'Free Consultation' is the old header button. 'Call Now' is a design label per Rule 7.2.",
+  "brandName": "Transitional Healthcare Consultants",
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "zpodsMission": "zPods Medical Mission",
+    "transitionalHealthcare": "Transitional Healthcare",
+    "services": "Services",
+    "resources": "Resources",
+    "contact": "Contact Us"
+  },
+  "cta": {
+    "label": "Free Consultation"
+  },
+  "call": {
+    "label": "Call Now"
+  },
+  "serving": {
+    "prefix": "Serving"
+  },
+  "a11y": {
+    "skipLink": "Skip to content",
+    "menuButton": "Menu",
+    "mainNav": "Main",
+    "footerNav": "Footer",
+    "mobileBar": "Quick contact"
+  },
+  "footer": {
+    "servicesHeading": "Services",
+    "companyHeading": "Company",
+    "contactHeading": "Contact Us"
+  }
+}

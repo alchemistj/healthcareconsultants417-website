@@ -1,0 +1,466 @@
+---
+import { getCity, cityHomePath, contactPath, servicePath, telHref } from "@/data/cityConfig";
+import global from "@/data/copy/_global.json";
+import audit from "@/data/copy/pages/_global.audit.json";
+import { inlineLogo } from "@/data/pages/companyLogo";
+import PhoneLink from "./PhoneLink.astro";
+
+interface Props {
+  citySlug?: string;
+}
+
+const city = getCity(Astro.props.citySlug);
+const current = Astro.url.pathname;
+
+// Quick links: 3-4 most important services for this city.
+const quickLinks = city.services
+  .filter((s) => s.headerQuickLink)
+  .map((s) => ({ href: servicePath(city, s), label: s.name }));
+
+// Top bar links. FAQs is left out until a city FAQ page exists in the route registry.
+const topLinks = [
+  { href: "/about/", label: global.nav.about },
+  { href: "/resources/", label: global.nav.resources },
+  { href: contactPath(city), label: global.nav.contact },
+];
+
+const homeHref = cityHomePath(city);
+const servingText = `${global.serving.prefix} ${city.displayName}`;
+const ctaHref = contactPath(city);
+const hours = audit.areas
+  .flatMap((area) => area.blocks)
+  .find((block) => block.text === "Hours of Operation: Mon-Sun 8am-5pm")?.text;
+if (!hours) throw new Error("Hours of Operation line is missing from the audit copy.");
+const logo = await inlineLogo();
+
+// Exact matching so a link to a home page never lights up on every page.
+const isActive = (href: string) => current === href;
+---
+
+<header class="site-header" data-site-header>
+  <div class="top-bar">
+    <div class="bar-inner">
+      <div class="serving-group">
+        <p class="serving">{servingText}</p>
+        <p class="hours">{hours}</p>
+      </div>
+      <nav aria-label={`${global.a11y.mainNav} secondary`}>
+        <ul>
+          {
+            topLinks.map((l) => (
+              <li>
+                <a href={l.href} aria-current={isActive(l.href) ? "page" : undefined}>
+                  {l.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="main-bar">
+    <div class="bar-inner">
+      <a class="logo" href={homeHref} aria-label={global.brandName}>
+        <img
+          src={logo.src}
+          alt=""
+          width={logo.width}
+          height={logo.height}
+          decoding="async"
+        />
+        <span class="logo-text">{global.brandName}</span>
+      </a>
+
+      <nav class="quick-nav" aria-label={global.a11y.mainNav}>
+        <ul>
+          {
+            quickLinks.map((l) => (
+              <li>
+                <a href={l.href} aria-current={isActive(l.href) ? "page" : undefined}>
+                  {l.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <div class="actions">
+        <PhoneLink class="phone-desktop" citySlug={city.slug} />
+        <PhoneLink class="call-mobile btn btn-primary" label={global.call.label} citySlug={city.slug} />
+        <a class="btn btn-primary cta-desktop" href={ctaHref}>{global.cta.label}</a>
+        <button
+          type="button"
+          class="menu-btn"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          data-menu-button
+        >
+          <span class="visually-hidden">{global.a11y.menuButton}</span>
+          <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Same links as the desktop header, same order, stacked. -->
+  <div class="menu-panel" id="mobile-menu" data-menu-panel hidden>
+    <p class="serving">{servingText}</p>
+    <p class="hours">{hours}</p>
+    <ul>
+      {
+        topLinks.map((l) => (
+          <li>
+            <a href={l.href} aria-current={isActive(l.href) ? "page" : undefined}>
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+      {
+        quickLinks.map((l) => (
+          <li>
+            <a href={l.href} aria-current={isActive(l.href) ? "page" : undefined}>
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+      <li><a href={telHref(city)}>{city.phoneDisplay}</a></li>
+    </ul>
+    <a class="btn btn-primary" href={ctaHref}>{global.cta.label}</a>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: var(--color-white);
+    color: var(--color-dark);
+    box-shadow: 0 1px 0 color-mix(in srgb, var(--color-dark) 14%, transparent);
+    transition: transform 0.2s;
+  }
+
+  .site-header.is-away {
+    transform: translateY(-100%);
+  }
+
+  .bar-inner {
+    width: min(100% - 2 * var(--content-pad), var(--header-max));
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .top-bar {
+    display: none;
+    height: 36px;
+    background: var(--color-dark);
+    color: var(--color-white);
+    font-size: 0.875rem;
+  }
+
+  .top-bar .bar-inner {
+    height: 100%;
+  }
+
+  .top-bar ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .top-bar a {
+    color: var(--color-white);
+    text-decoration: none;
+  }
+
+  .top-bar a:hover,
+  a[aria-current="page"] {
+    text-decoration: underline;
+  }
+
+  .serving-group {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+  }
+
+  .serving,
+  .hours {
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .logo img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .main-bar {
+    height: 64px;
+  }
+
+  .main-bar .bar-inner {
+    height: 100%;
+  }
+
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--color-dark);
+    font-weight: 700;
+    min-height: 48px;
+    min-width: 0;
+    flex-shrink: 1;
+  }
+
+  .logo-text {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.15;
+    max-width: 11em;
+  }
+
+  .quick-nav {
+    display: none;
+  }
+
+  .quick-nav ul {
+    display: flex;
+    gap: 4px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .quick-nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 0 10px;
+    color: var(--color-dark);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .quick-nav a:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .site-header :global(.phone-desktop),
+  .cta-desktop {
+    display: none;
+  }
+
+  .site-header :global(.phone-desktop) {
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--color-dark);
+    white-space: nowrap;
+  }
+
+  .site-header :global(.call-mobile) {
+    padding-inline: 8px;
+    font-size: 0.8125rem;
+    line-height: 1;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .menu-btn {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--color-dark);
+    border-radius: 6px;
+    background: var(--color-white);
+    color: var(--color-dark);
+    cursor: pointer;
+  }
+
+  .menu-panel {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-white);
+    padding: 16px var(--content-pad) 24px;
+    box-shadow: 0 8px 16px rgb(0 0 0 / 0.15);
+    max-height: calc(100vh - 64px);
+    overflow-y: auto;
+  }
+
+  .menu-panel[hidden] {
+    display: none;
+  }
+
+  .menu-panel .serving,
+  .menu-panel .hours {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  .menu-panel ul {
+    list-style: none;
+    margin: 0 0 16px;
+    padding: 0;
+  }
+
+  .menu-panel li a {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    color: var(--color-dark);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-dark) 14%, transparent);
+  }
+
+  .menu-panel .btn {
+    width: 100%;
+  }
+
+  @media (min-width: 768px) and (max-width: 1100px) {
+    .top-bar {
+      font-size: 0.75rem;
+    }
+
+    .top-bar ul {
+      gap: 12px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .top-bar {
+      display: block;
+    }
+
+    .menu-btn,
+    .site-header :global(.call-mobile),
+    .menu-panel {
+      display: none;
+    }
+
+    .quick-nav {
+      display: block;
+    }
+
+    .site-header :global(.phone-desktop),
+    .cta-desktop {
+      display: inline-flex;
+    }
+
+    .logo-text {
+      max-width: 9em;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-header {
+      transition: none;
+    }
+  }
+</style>
+
+<!-- Hide on scroll down, return after ~10px up. Transform only. Menu toggle. ~1KB, inline. -->
+<script is:inline>
+  (function () {
+    const header = document.querySelector("[data-site-header]");
+    const button = document.querySelector("[data-menu-button]");
+    const panel = document.querySelector("[data-menu-panel]");
+    if (!header || !button || !panel) return;
+
+    function setOpen(open) {
+      button.setAttribute("aria-expanded", open ? "true" : "false");
+      if (open) panel.removeAttribute("hidden");
+      else panel.setAttribute("hidden", "");
+      if (open) header.classList.remove("is-away");
+    }
+    button.addEventListener("click", function () {
+      setOpen(button.getAttribute("aria-expanded") !== "true");
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && button.getAttribute("aria-expanded") === "true") {
+        setOpen(false);
+        button.focus();
+      }
+    });
+    panel.addEventListener("click", function (e) {
+      if (e.target && e.target.closest && e.target.closest("a")) setOpen(false);
+    });
+
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let lastY = window.scrollY;
+    let up = 0;
+    let frame = 0;
+    function pinned() {
+      if (button.getAttribute("aria-expanded") === "true") return true;
+      const a = document.activeElement;
+      return !!a && a !== document.body && header.contains(a);
+    }
+    function update() {
+      frame = 0;
+      const y = window.scrollY;
+      const delta = y - lastY;
+      lastY = y;
+      if (pinned() || y <= header.offsetHeight) {
+        up = 0;
+        header.classList.remove("is-away");
+        return;
+      }
+      if (delta > 0) {
+        up = 0;
+        header.classList.add("is-away");
+      } else if (delta < 0) {
+        up += -delta;
+        if (up >= 10) {
+          up = 0;
+          header.classList.remove("is-away");
+        }
+      }
+    }
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (!frame) frame = window.requestAnimationFrame(update);
+      },
+      { passive: true },
+    );
+    header.addEventListener("focusin", function () {
+      header.classList.remove("is-away");
+    });
+    if (reduce.matches) header.style.transition = "none";
+  })();
+</script>
