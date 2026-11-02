@@ -12,7 +12,8 @@
     "preview": "node scripts/preview.mjs",
     "check": "astro check",
     "lint": "eslint .",
-    "test": "tsx --test \"test/**/*.test.ts\""
+    "test": "tsx --test \"test/**/*.test.ts\"",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@astrojs/vercel": "^8.2.11",
