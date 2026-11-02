@@ -1,0 +1,119 @@
+---
+import ContactForm from "@/components/forms/ContactForm.astro";
+import type { Inline } from "@/data/pages/companyCopy";
+
+interface Props {
+  nodes: Inline[];
+  buttonLabel: string;
+}
+
+const { nodes, buttonLabel } = Astro.props;
+
+type Part = { text: string; href?: string };
+
+const TOKEN = /(\(417\) 720-0818|417-720-0818|rachal@healthcareconsultants417\.com)([,.;:!?]*)/g;
+
+function parts(text: string, href?: string): Part[] {
+  const out: Part[] = [];
+  let last = 0;
+  for (const match of text.matchAll(TOKEN)) {
+    const index = match.index ?? 0;
+    if (index > last) {
+      const chunk = text.slice(last, index);
+      out.push(href ? { text: chunk, href } : { text: chunk });
+    }
+    const token = match[1] ?? "";
+    const punct = match[2] ?? "";
+    const link =
+      token === "rachal@healthcareconsultants417.com"
+        ? "mailto:rachal@healthcareconsultants417.com"
+        : "tel:+14177200818";
+    out.push({ text: token + punct, href: link });
+    last = index + match[0].length;
+  }
+  if (last < text.length) {
+    const chunk = text.slice(last);
+    out.push(href ? { text: chunk, href } : { text: chunk });
+  }
+  if (out.length === 0) out.push(href ? { text, href } : { text });
+  return out;
+}
+
+function escapeHtml(value: string): string {
+  return value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");
+}
+
+/** One string, no extra text nodes, so the copy stays character for character. */
+function markup(text: string, href?: string, button = false): string {
+  return parts(text, href)
+    .map((part) => {
+      if (!part.href) return escapeHtml(part.text);
+      const buttonClass = button && part.href === href ? ' class="btn btn-primary"' : "";
+      return `<a${buttonClass} href="${escapeHtml(part.href)}">${escapeHtml(part.text)}</a>`;
+    })
+    .join("");
+}
+
+type Row =
+  | { kind: "node"; node: Inline }
+  | { kind: "list"; items: { text: string; href?: string }[] };
+
+const rows: Row[] = [];
+for (const node of nodes) {
+  if (node.kind === "li") {
+    const last = rows[rows.length - 1];
+    if (last?.kind === "list") last.items.push({ text: node.text, href: node.href });
+    else rows.push({ kind: "list", items: [{ text: node.text, href: node.href }] });
+  } else {
+    rows.push({ kind: "node", node });
+  }
+}
+---
+
+{
+  rows.map((row) => {
+    if (row.kind === "list") {
+      return (
+        <ul>
+          {row.items.map((item) => (
+            <li set:html={markup(item.text, item.href)} />
+          ))}
+        </ul>
+      );
+    }
+    const node = row.node;
+    if (node.kind === "form") return <ContactForm buttonLabel={buttonLabel} />;
+    if (node.kind === "p") return <p set:html={markup(node.text)} />;
+    if (node.kind === "a") return <p class="action" set:html={markup(node.text, node.href, node.button)} />;
+    if (node.kind !== "heading") return null;
+    const html = markup(node.text, node.href);
+    if (node.level === 3) return <h3 set:html={html} />;
+    if (node.level === 4) return <h4 set:html={html} />;
+    return <h2 id={node.id} set:html={html} />;
+  })
+}
+
+<style>
+  ul {
+    margin: 0 0 1em;
+    padding-left: 1.25em;
+  }
+
+  h2,
+  h3,
+  h4 {
+    margin: 0 0 12px;
+  }
+
+  h2 {
+    color: var(--color-accent);
+  }
+
+  .action {
+    margin: 12px 0;
+  }
+
+  .action :global(a:not(.btn)) {
+    font-weight: 700;
+  }
+</style>

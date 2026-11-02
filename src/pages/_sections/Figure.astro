@@ -1,0 +1,47 @@
+---
+interface Props {
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+  position: string;
+  fit: "cover" | "contain";
+  sourceFile: string;
+}
+
+const { src, width, height, alt, position, fit, sourceFile } = Astro.props;
+---
+
+<div class="frame" data-fit={fit}>
+  <img
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading="lazy"
+    decoding="async"
+    data-source-file={sourceFile}
+    style={`object-position: ${position};`}
+  />
+</div>
+
+<style>
+  .frame {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--tint-primary);
+  }
+
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  [data-fit="contain"] img {
+    object-fit: contain;
+  }
+</style>
