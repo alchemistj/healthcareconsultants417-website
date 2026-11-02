@@ -1,0 +1,88 @@
+---
+import "../styles/global.css";
+import global from "@/data/copy/_global.json";
+import { SITE_ORIGIN } from "@/data/cityConfig";
+import Header from "@/components/Header.astro";
+import Hero from "@/components/Hero.astro";
+import Footer from "@/components/Footer.astro";
+import MobileBar from "@/components/MobileBar.astro";
+
+type HeroProps = {
+  eyebrow?: string;
+  heading: string;
+  subhead?: string;
+  image: { src: string; width: number; height: number; sourceFile?: string };
+  alt?: string;
+  objectPosition?: string;
+  ctaHref?: string;
+};
+
+interface Props {
+  title: string;
+  description: string;
+  /** Path with trailing slash, for example "/about/". Canonical = site origin + path. */
+  path: string;
+  /** Photo hero. Pages without one must be marked so in the route manifest. */
+  hero?: HeroProps;
+  /** Normal file URL for og:image (outside the hero path). */
+  ogImage?: string;
+  /** Preview and scratch pages only. */
+  noindex?: boolean;
+  citySlug?: string;
+}
+
+const { title, description, path, hero, ogImage, noindex = false, citySlug } = Astro.props;
+const canonical = new URL(path, SITE_ORIGIN).toString();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={global.brandName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <slot name="jsonld" />
+    <slot name="head" />
+    <noscript>
+      <style>
+        /* Without JS the hamburger cannot open, so show the menu links inline. */
+        [data-menu-button] {
+          display: none !important;
+        }
+        [data-menu-panel][hidden] {
+          display: block !important;
+          position: static !important;
+        }
+      </style>
+    </noscript>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{global.a11y.skipLink}</a>
+    {
+      hero ? (
+        <Hero {...hero} citySlug={citySlug}>
+          <Header slot="header" citySlug={citySlug} />
+        </Hero>
+      ) : (
+        <div class="atf">
+          <Header citySlug={citySlug} />
+          <span class="atf-ready" hidden />
+        </div>
+      )
+    }
+    <main id="main">
+      <slot />
+    </main>
+    <Footer citySlug={citySlug} />
+    <MobileBar citySlug={citySlug} />
+  </body>
+</html>

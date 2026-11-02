@@ -1,0 +1,76 @@
+---
+interface Item {
+  title: string;
+  /** One or two sentences at most. */
+  text?: string;
+  href: string;
+}
+
+interface Props {
+  heading: string;
+  items: Item[];
+}
+
+const { heading, items } = Astro.props;
+---
+
+<section class="related-band">
+  <div class="container">
+    <h2>{heading}</h2>
+    <ul>
+      {
+        items.map((item) => (
+          <li>
+            <h3><a href={item.href}>{item.title}</a></h3>
+            {item.text && <p>{item.text}</p>}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .related-band {
+    background: var(--tint-primary);
+    padding-block: 56px;
+  }
+
+  h2 {
+    margin: 0 0 24px;
+  }
+
+  ul {
+    display: grid;
+    gap: 16px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    background: var(--color-white);
+    border-radius: 8px;
+    padding: 18px 20px;
+  }
+
+  h3 {
+    margin: 0 0 6px;
+  }
+
+  h3 a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    ul {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

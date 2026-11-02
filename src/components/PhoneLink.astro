@@ -1,0 +1,17 @@
+---
+import { getCity, telHref } from "@/data/cityConfig";
+
+interface Props {
+  /** Call label (for example "Call Now"). When omitted, the NAP digits are shown. */
+  label?: string;
+  citySlug?: string;
+  class?: string;
+}
+
+const { label, citySlug, class: className } = Astro.props;
+const city = getCity(citySlug);
+---
+
+<a class:list={["phone-link", className]} href={telHref(city)} data-phone-link>
+  {label ?? city.phoneDisplay}
+</a>

@@ -1,0 +1,139 @@
+---
+import global from "@/data/copy/_global.json";
+import { getCity, contactPath } from "@/data/cityConfig";
+import PhoneLink from "./PhoneLink.astro";
+
+interface Props {
+  eyebrow?: string;
+  /** The only H1 on the page. */
+  heading: string;
+  subhead?: string;
+  /** Output of heroImage() (src is an inline AVIF data URI). */
+  image: {
+    src: string;
+    width: number;
+    height: number;
+    sourceFile?: string;
+  };
+  /** Describes the photo; empty string if purely decorative. */
+  alt?: string;
+  /** CSS object-position for the crop, for example "50% 30%". */
+  objectPosition?: string;
+  /** Overrides the primary CTA target (for example an embed anchor). */
+  ctaHref?: string;
+  citySlug?: string;
+}
+
+const {
+  eyebrow,
+  heading,
+  subhead,
+  image,
+  alt = "",
+  objectPosition = "50% 40%",
+  ctaHref,
+  citySlug,
+} = Astro.props;
+const city = getCity(citySlug);
+const primaryHref = ctaHref ?? contactPath(city);
+---
+
+<!--
+  First-frame order (SOP section 2): photo first, then the hero text, then the fixed header
+  (passed in the "header" slot), then the parse marker that opens the .atf gate.
+-->
+<div class="atf">
+  <img
+    class="atf-photo"
+    src={image.src}
+    alt={alt}
+    width={image.width}
+    height={image.height}
+    loading="eager"
+    decoding="sync"
+    fetchpriority="high"
+    data-ff-lcp-hero
+    data-source-file={image.sourceFile}
+    style={`object-position: ${objectPosition};`}
+  />
+  <section class="hero">
+    <div class="container hero-inner">
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h1>{heading}</h1>
+      {subhead && <p class="subhead">{subhead}</p>}
+      <div class="ctas">
+        <PhoneLink class="btn btn-outline hero-call" label={global.call.label} citySlug={city.slug} />
+        <a class="btn btn-primary" href={primaryHref}>{global.cta.label}</a>
+      </div>
+    </div>
+  </section>
+  <slot name="header" />
+  <span class="atf-ready" hidden></span>
+</div>
+
+<style>
+  .atf-photo {
+    position: absolute;
+    top: var(--header-h);
+    left: 0;
+    width: 100%;
+    height: var(--hero-h);
+    object-fit: cover;
+  }
+
+  .hero {
+    position: relative;
+    min-height: var(--hero-h);
+    display: flex;
+    align-items: center;
+    color: var(--color-white);
+    padding-block: 40px;
+  }
+
+  /* Scrim sits after the <img> in source. Dark overlay for text contrast (WCAG AA). */
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--color-dark) 82%, transparent),
+      color-mix(in srgb, var(--color-dark) 45%, transparent)
+    );
+  }
+
+  .hero-inner {
+    position: relative;
+  }
+
+  .eyebrow {
+    margin: 0 0 8px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    font-size: 0.95rem;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(2rem, 6vw, 3rem);
+    color: var(--color-white);
+    max-width: 18em;
+  }
+
+  .subhead {
+    margin: 16px 0 0;
+    font-size: 1.15rem;
+    max-width: 34em;
+  }
+
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .hero :global(.phone-link) {
+    text-decoration: none;
+  }
+</style>

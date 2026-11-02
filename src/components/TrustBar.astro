@@ -1,0 +1,81 @@
+---
+import { getCity, telHref } from "@/data/cityConfig";
+
+interface Props {
+  /** Confirmed credentials only. */
+  items: string[];
+  /** Second line, for example the "Serving ..." text. */
+  serving?: string;
+  /** Second line: the primary offer. */
+  offer?: string;
+  /** Click-to-call text, for example "Call [Owner]". Digits come from the NAP config. */
+  callText?: string;
+  citySlug?: string;
+}
+
+const { items, serving, offer, callText, citySlug } = Astro.props;
+const city = getCity(citySlug);
+const secondLine = [serving, offer].filter(Boolean) as string[];
+---
+
+<section class="trust-bar" aria-label="Trust">
+  <div class="container">
+    {
+      items.length > 0 && (
+        <ul class="items">
+          {items.map((item) => <li>{item}</li>)}
+        </ul>
+      )
+    }
+    {
+      (secondLine.length > 0 || callText) && (
+        <p class="second">
+          {secondLine.map((part) => <span>{part}</span>)}
+          {callText && (
+            <span>
+              <a href={telHref(city)}>
+                {callText}: {city.phoneDisplay}
+              </a>
+            </span>
+          )}
+        </p>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .trust-bar {
+    background: var(--tint-primary);
+    padding-block: 20px;
+    font-size: 0.95rem;
+  }
+
+  .items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+  }
+
+  .second {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 20px;
+    margin: 8px 0 0;
+  }
+
+  .second a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+    font-weight: 700;
+  }
+
+  .items + .second {
+    margin-top: 12px;
+  }
+</style>
