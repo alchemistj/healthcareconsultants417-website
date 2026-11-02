@@ -1,0 +1,23 @@
+/*
+ * Design tokens. Four brand colors, one font, one content width. Defined once, here.
+ *
+ * TODO-BRAND: audit/brand.json did not exist when Lane B built the shell
+ * (/home/user/ff-architect/docs/clients/healthcareconsultants417/audit/brand.json).
+ * The color and font values below are PLACEHOLDERS, not the client's brand. Replace
+ * all four colors and the font with the values from brand.json, then check WCAG AA.
+ */
+:root {
+  /* TODO-BRAND: placeholder dark */
+  --color-dark: #1f2a37;
+  --color-white: #ffffff;
+  /* TODO-BRAND: placeholder primary */
+  --color-primary: #1d5c63;
+  /* TODO-BRAND: placeholder accent (darkened enough for white text, 4.5:1) */
+  --color-accent: #b4531a;
+
+  /* TODO-BRAND: placeholder font. System fonts only; never load Google Fonts. */
+  --font-body: system-ui, -apple-system, "Segoe UI", "Noto Sans", Roboto, sans-serif;
+
+  --content-max: 900px;
+  --content-pad: 24px;
+}
