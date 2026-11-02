@@ -41,6 +41,9 @@ function manifestPagesFor(route: LaunchRoute): ManifestPage[] {
   return manifest.pages.filter((page) => keys.has(pathname(page.url)));
 }
 
+/** `chosen` value for a decorative manifest image that was removed on purpose, not replaced. */
+const DROPPED = "(dropped)";
+
 function headerIndex(cells: string[]): Record<string, number> {
   const aliases: Record<string, string> = {
     page: "page",
@@ -99,7 +102,7 @@ export function parseSubstitutionMarkdown(markdown: string, file = "substitution
         page: page.endsWith("/") ? page : `${page}/`,
         slot: header.slot === undefined ? "" : (cells[header.slot] ?? ""),
         replaces: manifestEntryName(replaces),
-        chosen: manifestEntryName(chosen),
+        chosen: chosen === DROPPED ? DROPPED : manifestEntryName(chosen),
         reason: header.reason === undefined ? "" : (cells[header.reason] ?? ""),
       });
     }
@@ -129,6 +132,11 @@ export function expectedStems(routePath: string, page: ManifestPage, subs: reado
   const stems = visibleStems(page);
   for (const sub of subs.filter((item) => item.page === routePath)) {
     const index = stems.indexOf(sub.replaces);
+    if (sub.chosen === DROPPED) {
+      // A decorative manifest image removed on purpose (logged with its reason). Not replaced.
+      if (index >= 0) stems.splice(index, 1);
+      continue;
+    }
     if (index >= 0) {
       stems[index] = sub.chosen;
       continue;
@@ -153,6 +161,16 @@ test("substitution log parser reads the table the other jobs write", () => {
   assert.deepEqual(parsed, [
     { page: "/about/", slot: "2", replaces: "section-bg", chosen: "rachal", reason: "Theme demo slot, her portrait" },
   ]);
+});
+
+test("a (dropped) row removes that manifest image and adds nothing", () => {
+  const page = { url: "https://x/a/", images: [{ file: "a/one.jpg" }, { file: "a/bg.jpg" }, { file: "a/two.jpg" }] } as unknown as ManifestPage;
+  const subs = parseSubstitutionMarkdown(`
+| page | slot | replaces | chosen | reason |
+| --- | --- | --- | --- | --- |
+| /a/ | | bg.jpg | (dropped) | Decorative theme background |
+`);
+  assert.deepEqual(expectedStems("/a/", page, subs), ["one", "two"]);
 });
 
 test("every published route maps to one manifest page", () => {

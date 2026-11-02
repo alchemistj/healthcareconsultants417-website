@@ -1,19 +1,19 @@
 # Image substitutions: service pages
 
-No theme-demo photo was replaced. The manifest `excluded` list does not include these seven
-service pages. Every photo that renders is the original file, in that page's manifest order.
+No theme-demo photo was replaced on the seven service pages. Every photo that renders is the
+original file, in that page's manifest order, except the decorative backgrounds below.
 
-## Dropped, not replaced
+`test/gates/images.test.ts` reads the first table below. `(dropped)` means the manifest image was
+removed on purpose and nothing replaces it.
 
-| Page | File | Reason |
-|---|---|---|
-| Senior Community Placement | `src/assets/legacy/wp-content/plugins/wpforms/assets/images/submit-spin.svg` | Hidden WPForms loading spinner, not a photo. |
-| Suicide Awareness | `src/assets/legacy/wp-content/plugins/wpforms/assets/images/submit-spin.svg` | Hidden WPForms loading spinner, not a photo. |
-| Transitional Care | `src/assets/legacy/wp-content/plugins/wpforms/assets/images/submit-spin.svg` | Hidden WPForms loading spinner, not a photo. |
-| Hospital-to-Home Transition | `src/assets/legacy/wp-content/plugins/wpforms/assets/images/submit-spin.svg` | Hidden WPForms loading spinner, not a photo. |
-| Senior Relocation | `src/assets/legacy/wp-content/uploads/2022/06/section-bg.jpg` | Decorative theme background of pale circles, not a photograph. |
-| Senior Downsizing | `src/assets/legacy/wp-content/uploads/2022/06/section-bg.jpg` | Decorative theme background of pale circles, not a photograph. |
-| zPods Sensory Bed | `src/assets/legacy/wp-content/uploads/2022/06/section-bg.jpg` | Decorative theme background of pale circles, not a photograph. |
+| page | slot | replaces | chosen | reason |
+| --- | --- | --- | --- | --- |
+| /springfield/senior-relocation/ | | section-bg.jpg | (dropped) | Decorative theme background of pale circles, not a photograph. |
+| /springfield/senior-downsizing/ | | section-bg.jpg | (dropped) | Decorative theme background of pale circles, not a photograph. |
+| /springfield/zpod-sensory-beds/ | | section-bg.jpg | (dropped) | Decorative theme background of pale circles, not a photograph. |
 
-Partner/brand logo strips and decorative line images do not appear on these pages.
-No stock images. No generated images.
+## Also not rendered (hidden, not photos)
+
+The hidden WPForms loading spinner `submit-spin.svg` on Senior Community Placement, Suicide
+Awareness, Transitional Care and Hospital-to-Home Transition. It is marked hidden in the manifest,
+so the image lock already skips it.
